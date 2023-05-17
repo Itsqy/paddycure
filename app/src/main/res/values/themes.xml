@@ -3,6 +3,12 @@
     <style name="Base.Theme.Paddycure" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--         <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="font_toolbar">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="fontFamily">@font/poppins_semibold</item>
     </style>
 
     <style name="Theme.Paddycure" parent="Base.Theme.Paddycure" />

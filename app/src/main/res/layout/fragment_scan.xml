@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScanFragment">
+
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/back_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Rice Leaf Scan Disease"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/img_bg_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="177dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/scanner_bg"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <TextView
+        android:id="@+id/tv_rice_leaf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="51dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Rice Leaf Scan Disease"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/img_bg_scanner" />
+
+    <TextView
+        android:id="@+id/tv_subriceleaf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_reguler"
+        android:text="Pindai Padi mu , \nSebelum terlambat"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@id/tv_rice_leaf"
+        app:layout_constraintTop_toBottomOf="@id/tv_rice_leaf" />
+
+
+    <LinearLayout
+        android:id="@+id/btn_Scan"
+        android:layout_width="314dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="39dp"
+        android:background="@drawable/bg_button"
+        android:orientation="horizontal"
+        android:paddingVertical="15dp"
+        android:paddingStart="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_subriceleaf">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Detection Now"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:src="@drawable/ic_plus" />
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
