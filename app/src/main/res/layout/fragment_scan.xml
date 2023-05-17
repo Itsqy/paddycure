@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScanFragment">
+    tools:context=".ui.scan.history.ScanFragment">
 
 
     <LinearLayout
@@ -97,7 +97,27 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tv_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="History"
+        android:textColor="@color/primaryColor"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/btn_Scan"
+        app:layout_constraintTop_toBottomOf="@id/btn_Scan" />
 
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/rv_history_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_history"
+        tools:listitem="@tools:sample/avatars" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
