@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/home_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/btn_morning"
+            android:layout_width="128dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="49dp"
+            android:background="@drawable/cardview_login"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_sun" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Good Morning"
+                android:textColor="@color/primaryColor"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Anya Fathya"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@id/btn_morning"
+            app:layout_constraintTop_toBottomOf="@id/btn_morning" />
+
+        <ImageView
+            android:id="@+id/bg_cuaca"
+            android:layout_width="308dp"
+            android:layout_height="161dp"
+            android:layout_marginTop="46dp"
+            android:background="@drawable/bg_cuaca"
+            android:elevation="20dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_username" />
+
+        <ImageView
+            android:id="@+id/ic_location"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:elevation="20dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="@id/bg_cuaca"
+            app:layout_constraintTop_toTopOf="@id/bg_cuaca" />
+
+        <TextView
+            android:id="@+id/tv_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Surabaya,East Java"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/ic_location"
+            app:layout_constraintStart_toEndOf="@id/ic_location"
+            app:layout_constraintTop_toTopOf="@id/ic_location" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="45dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="7dp"
+            android:elevation="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="26"
+            android:textColor="@color/primaryColor"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="@id/ic_location"
+            app:layout_constraintTop_toBottomOf="@id/tv_place" />
+
+        <TextView
+            android:id="@+id/ic_celcius"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginTop="10sp"
+            android:elevation="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="°C"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@id/tv_temperature"
+            app:layout_constraintTop_toTopOf="@id/tv_temperature" />
+
+        <TextView
+            android:id="@+id/tv_season"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:elevation="20dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Rain"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_temperature"
+            app:layout_constraintStart_toEndOf="@id/tv_temperature" />
+
+        <ImageView
+            android:id="@+id/ic_season"
+            android:layout_width="53dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="28dp"
+            android:elevation="20dp"
+            android:src="@drawable/ic_rain"
+            app:layout_constraintEnd_toEndOf="@id/bg_cuaca"
+            app:layout_constraintTop_toTopOf="@id/bg_cuaca" />
+
+        <ImageView
+            android:id="@+id/line"
+            android:layout_width="272dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="18dp"
+            android:background="#EBEBEB"
+            android:elevation="20dp"
+            app:layout_constraintEnd_toEndOf="@id/ic_season"
+            app:layout_constraintStart_toStartOf="@id/tv_temperature"
+            app:layout_constraintTop_toBottomOf="@id/tv_season" />
+
+
+        <GridLayout
+            android:id="@+id/group_of_season"
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:columnCount="4"
+            android:elevation="20dp"
+            android:orientation="horizontal"
+            android:rowCount="1"
+            android:rowOrderPreserved="true"
+            app:layout_constraintEnd_toEndOf="@id/bg_cuaca"
+            app:layout_constraintStart_toStartOf="@id/bg_cuaca"
+            app:layout_constraintTop_toBottomOf="@id/line">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Humidity"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="97%"
+                    android:textColor="@color/thirdColor"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="UV Index"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_uvindex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="low"
+                    android:textColor="@color/thirdColor"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="center"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Wind"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_wind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="5 km/h"
+                    android:textColor="@color/thirdColor"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="3"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Pollen"
+                    android:textColor="@color/primaryColor"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/tv_pollen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="None"
+                    android:textColor="@color/thirdColor"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+
+        </GridLayout>
+
+        <ImageView
+            android:id="@+id/line2"
+            android:layout_width="58dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/bg_button"
+            app:layout_constraintStart_toStartOf="@id/bg_cuaca"
+            app:layout_constraintTop_toBottomOf="@id/bg_cuaca" />
+
+        <TextView
+            android:id="@+id/tv_tagline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_italic"
+            android:text="Check your rice plant"
+            android:textColor="@color/primaryColor"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/line2"
+            app:layout_constraintEnd_toStartOf="@id/line3"
+            app:layout_constraintStart_toEndOf="@id/line2"
+            app:layout_constraintTop_toTopOf="@id/line2" />
+
+        <ImageView
+            android:id="@+id/line3"
+            android:layout_width="58dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/bg_button"
+            app:layout_constraintEnd_toEndOf="@id/bg_cuaca"
+            app:layout_constraintTop_toBottomOf="@id/bg_cuaca" />
+
+        <LinearLayout
+            android:id="@+id/bg_scan_feature"
+            android:layout_width="308dp"
+            android:layout_height="109dp"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/bg_scan_feature"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@id/line3"
+            app:layout_constraintStart_toStartOf="@id/line2"
+            app:layout_constraintTop_toBottomOf="@id/tv_tagline">
+
+            <ImageView
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                android:src="@drawable/logo_app" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="9dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Rice Leaf Scan Disease"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_reguler"
+                    android:text="Lorem ipsum dolor sit amet,\nconsectetur adipiscing elit sed do"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:rotation="180"
+                android:src="@drawable/baseline_arrow_back_ios_24" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_top_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Top News"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/bg_scan_feature"
+            app:layout_constraintTop_toBottomOf="@id/bg_scan_feature" />
+
+
+        <TextView
+            android:id="@+id/tv_recentnews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Recently News"
+            android:textColor="@color/primaryColor"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/tv_top_news"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_news" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
