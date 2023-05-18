@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.darkcoder.paddycure.R
 
 
-class ScanFragment : Fragment() {
+class HistoryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/scanFragment"
-        android:name="com.darkcoder.paddycure.ui.scan.history.ScanFragment"
+        android:name="com.darkcoder.paddycure.ui.scan.history.HistoryFragment"
         android:label="fragment_scan"
         tools:layout="@layout/fragment_scan" />
 </navigation>
