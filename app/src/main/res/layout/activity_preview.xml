@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.scan.preview.PreviewActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="-100dp"
+        android:src="@drawable/bg_button_disable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/back_button_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Rice Leaf Scan Disease"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="391dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="-200dp"
+        android:layout_marginTop="40dp"
+        android:alpha="0.07"
+        android:rotation="30"
+        android:src="@drawable/eclipse"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="221dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="-80dp"
+        android:alpha="0.07"
+        android:rotation="-15"
+        android:src="@drawable/eclipse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_preview"
+        android:layout_width="310dp"
+        android:layout_height="508dp"
+        android:layout_marginTop="88dp"
+        android:background="@drawable/cardview_login"
+        android:elevation="20dp"
+        android:src="@drawable/ic_camera_grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/btn_gallery"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/bg_button_grey"
+        android:elevation="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_preview">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_gallery" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Gallery"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_camera"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="23dp"
+        android:background="@drawable/bg_button_grey"
+        android:elevation="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_preview">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_camera_rounded" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Gallery"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="314dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_button"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Check Result"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="@id/btn_camera"
+        app:layout_constraintStart_toStartOf="@id/btn_gallery"
+        app:layout_constraintTop_toBottomOf="@id/btn_gallery" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
