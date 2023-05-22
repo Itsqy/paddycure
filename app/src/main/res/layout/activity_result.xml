@@ -122,14 +122,96 @@
 
         <TextView
             android:id="@+id/tv_about_disease"
-            android:layout_width="266dp"
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="37dp"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/cardview_login"
+            android:elevation="3dp"
             android:fontFamily="@font/poppins_reguler"
+            android:padding="24dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. "
             android:textSize="13sp"
             app:layout_constraintStart_toStartOf="@id/tv_label_about"
             app:layout_constraintTop_toBottomOf="@id/tv_label_about" />
+
+        <TextView
+            android:id="@+id/tv_label_disease_pict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Disease Pictures"
+            android:textColor="@color/primaryColor"
+            app:layout_constraintStart_toStartOf="@id/tv_about_disease"
+            app:layout_constraintTop_toBottomOf="@id/tv_about_disease" />
+
+        <ImageView
+            android:id="@+id/iv_disease_pict"
+            android:layout_width="310dp"
+            android:layout_height="194dp"
+            android:background="@drawable/cardview_login"
+            android:elevation="3dp"
+            android:padding="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/paddy_ex"
+            app:layout_constraintStart_toStartOf="@id/tv_label_disease_pict"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_disease_pict" />
+
+        <TextView
+            android:id="@+id/tv_label_sugestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Sugestion for you"
+            android:textColor="@color/primaryColor"
+            app:layout_constraintStart_toStartOf="@id/iv_disease_pict"
+            app:layout_constraintTop_toBottomOf="@id/iv_disease_pict" />
+
+        <TextView
+            android:id="@+id/tv_sugestion"
+            android:layout_width="310dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/cardview_login"
+            android:elevation="3dp"
+            android:fontFamily="@font/poppins_reguler"
+            android:padding="24dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. "
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_sugestion"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_sugestion" />
+
+        <TextView
+            android:id="@+id/tv_label_product_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Product Recomendation"
+            android:textColor="@color/primaryColor"
+            app:layout_constraintStart_toStartOf="@id/tv_sugestion"
+            app:layout_constraintTop_toBottomOf="@id/tv_sugestion" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recomendation_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_label_product_rec"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_product_rec" />
+
+        <Button
+            android:id="@+id/btn_back_to_home"
+            android:layout_width="318dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Back to Home "
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_recomendation_product" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
