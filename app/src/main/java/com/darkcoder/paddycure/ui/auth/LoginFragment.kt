@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.databinding.FragmentLoginBinding
 
 
@@ -30,7 +32,13 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val welcome = "Welcome to " + "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
 
-        binding?.tvWelcome?.text = Html.fromHtml(welcome)
+        binding?.apply {
+            tvWelcome?.text = Html.fromHtml(welcome)
+
+            tvToRegister?.setOnClickListener {
+                view.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            }
+        }
     }
 
 }
