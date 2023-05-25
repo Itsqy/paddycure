@@ -78,10 +78,10 @@ fun ListProductPreview() {
 @Composable
 fun ItemProduct() {
     LazyVerticalGrid(
+        modifier = Modifier.height(2000.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
         columns = GridCells.Adaptive(minSize = 140.dp),
-        modifier = Modifier.height(400.dp)
     ) {
         items(10) {
             Card (
