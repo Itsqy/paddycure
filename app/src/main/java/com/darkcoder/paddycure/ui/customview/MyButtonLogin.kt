@@ -1,4 +1,4 @@
-package com.darkcoder.paddycure.customview
+package com.darkcoder.paddycure.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas
@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import com.darkcoder.paddycure.R
 
 
-class MyButtonRegister : AppCompatButton {
+class MyButtonLogin : AppCompatButton {
     private lateinit var enabledBackground: Drawable
     private lateinit var disabledBackground: Drawable
     private var txtColor: Int = 1
@@ -35,11 +35,10 @@ class MyButtonRegister : AppCompatButton {
         super.onDraw(canvas)
         background = if (isEnabled) enabledBackground else disabledBackground
 
-        setTextColor(ContextCompat.getColor(context, R.color.white))
         textSize = 15f
         gravity = Gravity.CENTER
         text =
-            if (isEnabled) "Register" else "filled"
+            if (isEnabled) "login " else "fill first "
     }
 
     private fun init() {

@@ -33,15 +33,17 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/icon_sun"
                 android:layout_width="21dp"
                 android:layout_height="21dp"
                 android:layout_marginEnd="5dp"
                 android:src="@drawable/ic_sun" />
 
             <TextView
+                android:id="@+id/tv_good_morning"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="Good Morning"
                 android:textColor="@color/primaryColor"
                 android:textSize="10sp" />
@@ -102,7 +104,7 @@
             android:layout_marginTop="7dp"
             android:elevation="20dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="26"
+
             android:textColor="@color/primaryColor"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="@id/ic_location"
@@ -133,7 +135,7 @@
             app:layout_constraintStart_toEndOf="@id/tv_temperature" />
 
         <ImageView
-            android:id="@+id/ic_season"
+            android:id="@+id/iv_season"
             android:layout_width="53dp"
             android:layout_height="51dp"
             android:layout_marginTop="21dp"
@@ -150,7 +152,7 @@
             android:layout_marginTop="18dp"
             android:background="#EBEBEB"
             android:elevation="20dp"
-            app:layout_constraintEnd_toEndOf="@id/ic_season"
+            app:layout_constraintEnd_toEndOf="@id/iv_season"
             app:layout_constraintStart_toStartOf="@id/tv_temperature"
             app:layout_constraintTop_toBottomOf="@id/tv_season" />
 
@@ -188,14 +190,28 @@
                     android:textColor="@color/primaryColor"
                     android:textSize="10sp" />
 
-                <TextView
-                    android:id="@+id/tv_humidity"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="97%"
-                    android:textColor="@color/thirdColor"
-                    android:textSize="10sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_humidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="97%"
+                        android:textColor="@color/thirdColor"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="%"
+                        android:textColor="@color/thirdColor"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -245,14 +261,28 @@
                     android:textColor="@color/primaryColor"
                     android:textSize="10sp" />
 
-                <TextView
-                    android:id="@+id/tv_wind"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_semibold"
-                    android:text="5 km/h"
-                    android:textColor="@color/thirdColor"
-                    android:textSize="10sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_wind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="5"
+                        android:textColor="@color/thirdColor"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text=" km/h"
+                        android:textColor="@color/thirdColor"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

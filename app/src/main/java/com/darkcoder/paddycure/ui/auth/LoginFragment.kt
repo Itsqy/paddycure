@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.databinding.FragmentLoginBinding
+import com.darkcoder.paddycure.ui.SecondActivity
 
 
 class LoginFragment : Fragment() {
@@ -34,7 +36,9 @@ class LoginFragment : Fragment() {
 
         binding?.apply {
             tvWelcome?.text = Html.fromHtml(welcome)
-
+            btnLogin.setOnClickListener {
+                startActivity(Intent(requireActivity(), SecondActivity::class.java))
+            }
             tvToRegister?.setOnClickListener {
                 view.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }

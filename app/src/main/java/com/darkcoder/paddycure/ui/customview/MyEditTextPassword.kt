@@ -1,4 +1,4 @@
-package com.darkcoder.paddycure.customview
+package com.darkcoder.paddycure.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas
