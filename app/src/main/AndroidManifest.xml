@@ -40,21 +40,13 @@
             android:exported="false"
             android:label="@string/title_activity_profile_edit"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
-            android:name=".ui.profile.profileEdit.ProfileEditActivity"
-            android:exported="false"
-            android:label="@string/title_activity_profile_edit"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
         <activity
             android:name=".ui.profile.profilemenu.ProfileActivity"
             android:exported="false"
             android:label="@string/title_activity_profile"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
-            android:name=".ui.profile.ProfileActivity"
-            android:exported="false"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
         <activity
             android:name=".ui.product.shop.ShopActivity"
             android:exported="false"
@@ -70,11 +62,7 @@
             android:exported="false"
             android:label="@string/title_activity_cart"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
-            android:name=".ui.product.CartActivity"
-            android:exported="false"
-            android:label="@string/title_activity_cart"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
         <activity
             android:name=".ui.scan.result.ResultActivity"
             android:exported="false" />

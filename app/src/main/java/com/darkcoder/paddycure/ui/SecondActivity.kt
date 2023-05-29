@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentManager
 import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.databinding.ActivitySecondBinding
 import com.darkcoder.paddycure.ui.home.HomeFragment
+import com.darkcoder.paddycure.ui.product.shop.ShopFragment
+import com.darkcoder.paddycure.ui.profile.profilemenu.ProfileFragment
 import com.darkcoder.paddycure.ui.scan.history.HistoryFragment
 
 class SecondActivity : AppCompatActivity() {
@@ -35,12 +37,29 @@ class SecondActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, HomeFragment())
                         .commit()
+
+
                     return@setOnNavigationItemSelectedListener true
                 }
 
                 R.id.history_buttom -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, HistoryFragment())
+                        .commit()
+//                    Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_scanFragment)
+                    return@setOnNavigationItemSelectedListener true
+                }
+
+                R.id.shop_bottom -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ShopFragment())
+                        .commit()
+                    return@setOnNavigationItemSelectedListener true
+                }
+
+                R.id.profile_bottom -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, ProfileFragment())
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }

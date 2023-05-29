@@ -109,15 +109,14 @@
         app:layout_constraintStart_toStartOf="@id/btn_Scan"
         app:layout_constraintTop_toBottomOf="@id/btn_Scan" />
 
-    <androidx.recyclerview.widget.RecyclerView
-
-        android:id="@+id/rv_history_scan"
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/compose_view_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_history"
-        tools:listitem="@tools:sample/avatars" />
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

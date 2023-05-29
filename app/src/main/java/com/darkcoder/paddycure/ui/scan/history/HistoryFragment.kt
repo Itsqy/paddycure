@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.material.MaterialTheme
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.darkcoder.paddycure.databinding.FragmentScanBinding
+import com.darkcoder.paddycure.ui.scan.history.compose.HistoryList
 
 
 class HistoryFragment : Fragment() {
@@ -58,6 +60,20 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        permissionCamera()
+        setupComposeList()
+
+    }
+
+    private fun setupComposeList() {
+        binding?.composeViewHistory?.setContent {
+            MaterialTheme {
+                HistoryList()
+            }
+        }
+    }
+
+    private fun permissionCamera() {
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 requireActivity(),
@@ -67,7 +83,6 @@ class HistoryFragment : Fragment() {
             Toast.makeText(requireContext(), "tidak mendapat permission", Toast.LENGTH_SHORT).show()
 
         } else {
-
         }
     }
 

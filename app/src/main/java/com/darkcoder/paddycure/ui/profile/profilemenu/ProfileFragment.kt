@@ -1,8 +1,9 @@
 package com.darkcoder.paddycure.ui.profile.profilemenu
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,10 +19,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.Fragment
 import com.darkcoder.paddycure.ui.product.cart.components.OutlinePrimaryButton
 import com.darkcoder.paddycure.ui.product.cart.components.TopBar
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.PaddycureTheme
@@ -29,20 +32,28 @@ import com.darkcoder.paddycure.ui.product.cart.ui.theme.fonts
 import com.darkcoder.paddycure.ui.profile.profilemenu.components.ProfileInformation
 import com.darkcoder.paddycure.ui.profile.profilemenu.components.SettingSection
 
-class ProfileActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            PaddycureTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Profile()
+class ProfileFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                PaddycureTheme {
+                    // A surface container using the 'background' color from the theme
+                    Surface(
+                        modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        Profile()
+                    }
                 }
             }
         }
     }
+
+
 }
 
 @Composable
@@ -67,9 +78,12 @@ fun Profile() {
             color = Color(0xff59981A),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        OutlinePrimaryButton(title = "Logout", modifier = Modifier.padding(vertical = 10.dp)
-            .fillMaxWidth()
-            .heightIn(50.dp))
+        OutlinePrimaryButton(
+            title = "Logout", modifier = Modifier
+                .padding(vertical = 10.dp)
+                .fillMaxWidth()
+                .heightIn(50.dp)
+        )
     }
 }
 

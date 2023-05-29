@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material.MaterialTheme
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -21,7 +22,8 @@ import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
 import com.darkcoder.paddycure.ui.SecondActivity
-import com.darkcoder.paddycure.utils.LocationManager
+import com.darkcoder.paddycure.ui.home.compose.RecentNewsList
+import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -37,7 +39,7 @@ import java.util.Calendar
 
 class HomeFragment : Fragment() {
 
-    lateinit var locationManager: LocationManager
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private val REQUEST_LOCATION_SETTINGS = 1001
@@ -61,8 +63,24 @@ class HomeFragment : Fragment() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         getMyLastLocation()
         setGoodMorning()
+        composeViewSetUp()
 
 
+    }
+
+    private fun composeViewSetUp() {
+        binding?.composviewList?.setContent {
+
+            MaterialTheme {
+                TopNewsList()
+            }
+        }
+
+        binding?.composviewRecentList?.setContent {
+            MaterialTheme{
+                RecentNewsList()
+            }
+        }
     }
 
     private val requestPermissionLauncher = registerForActivityResult(
@@ -122,6 +140,12 @@ class HomeFragment : Fragment() {
                         "http://api.weatherapi.com/v1/current.json?key=91b5be4a0d4d45e6bab231810232804&q=${location.latitude},${location.longitude}"
                     val client = AsyncHttpClient()
 
+                    Toast.makeText(
+                        requireContext(),
+                        "${location.latitude}, ${location.longitude}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
                     client.get(url, object : AsyncHttpResponseHandler() {
                         override fun onSuccess(
                             statusCode: Int,
@@ -167,7 +191,7 @@ class HomeFragment : Fragment() {
                             responseBody: ByteArray?,
                             error: Throwable?
                         ) {
-                            Toast.makeText(requireContext(), "errror : $error", Toast.LENGTH_SHORT)
+                            Toast.makeText(requireContext(), "errror : $error", Toast.LENGTH_LONG)
                                 .show()
                         }
                     })

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
 
@@ -408,18 +409,36 @@
             app:layout_constraintStart_toStartOf="@id/bg_scan_feature"
             app:layout_constraintTop_toBottomOf="@id/bg_scan_feature" />
 
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/composview_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_top_news" />
 
         <TextView
-            android:id="@+id/tv_recentnews"
+            android:id="@+id/tv_recent_news"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Recently News"
+            android:text="Recent News"
             android:textColor="@color/primaryColor"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/tv_top_news"
-            app:layout_constraintTop_toBottomOf="@id/tv_top_news" />
+            app:layout_constraintTop_toBottomOf="@id/composview_list" />
+
+        <androidx.compose.ui.platform.ComposeView
+            android:id="@+id/composview_recent_list"
+            android:layout_width="300dp"
+            android:layout_height="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/composview_list" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
