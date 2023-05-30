@@ -17,13 +17,16 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
+import com.darkcoder.paddycure.dummies.Hero
+import com.darkcoder.paddycure.dummies.HeroesData
 import com.darkcoder.paddycure.ui.SecondActivity
-import com.darkcoder.paddycure.ui.home.compose.RecentNewsList
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
+import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -65,6 +68,16 @@ class HomeFragment : Fragment() {
         setGoodMorning()
         composeViewSetUp()
 
+        val list: ArrayList<Hero> = arrayListOf()
+        list.addAll(HeroesData.heroes)
+        val newsAdapter = NewsAdapter()
+        binding?.rvRecentNews?.apply {
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = newsAdapter
+            newsAdapter.submitList(list)
+        }
+
 
     }
 
@@ -76,11 +89,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding?.composviewRecentList?.setContent {
-            MaterialTheme{
-                RecentNewsList()
-            }
-        }
+
     }
 
     private val requestPermissionLauncher = registerForActivityResult(

@@ -430,15 +430,13 @@
             app:layout_constraintStart_toStartOf="@id/tv_top_news"
             app:layout_constraintTop_toBottomOf="@id/composview_list" />
 
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/composview_recent_list"
-            android:layout_width="300dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_recent_news"
+            android:layout_width="400dp"
             android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/composview_list" />
-
-
+            app:layout_constraintTop_toBottomOf="@id/tv_recent_news" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
