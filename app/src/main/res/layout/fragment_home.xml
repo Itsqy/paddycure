@@ -411,11 +411,11 @@
 
         <androidx.compose.ui.platform.ComposeView
             android:id="@+id/composview_list"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_marginStart="-20dp"
             android:layout_height="wrap_content"
-
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_top_news"
             app:layout_constraintTop_toBottomOf="@id/tv_top_news" />
 
         <TextView
@@ -431,6 +431,7 @@
             app:layout_constraintTop_toBottomOf="@id/composview_list" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="10dp"
             android:id="@+id/rv_recent_news"
             android:layout_width="400dp"
             android:layout_height="400dp"

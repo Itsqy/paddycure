@@ -7,19 +7,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.darkcoder.paddycure.data.model.BeritaResponseItem
 import com.darkcoder.paddycure.databinding.ItemNewsLayoutBinding
-import com.darkcoder.paddycure.dummies.Hero
 import com.darkcoder.paddycure.ui.home.compose.RecentNewsItem
 
-class NewsAdapter : ListAdapter<Hero, NewsAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class NewsAdapter : ListAdapter<BeritaResponseItem, NewsAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(private var binding: ItemNewsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(news: Hero) {
+        fun bind(news: BeritaResponseItem) {
 
             binding.composeRecent.setContent {
                 MaterialTheme {
-                    RecentNewsItem(photo = news.img, title = news.name)
+                    RecentNewsItem(
+                        photo = news.imgBerita.toString(),
+                        title = news.judulBerita.toString()
+                    )
                 }
             }
         }
@@ -45,14 +48,20 @@ class NewsAdapter : ListAdapter<Hero, NewsAdapter.MyViewHolder>(DIFF_CALLBACK) {
     }
 
     companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<Hero> =
-            object : DiffUtil.ItemCallback<Hero>() {
-                override fun areItemsTheSame(oldNews: Hero, newNews: Hero): Boolean {
-                    return oldNews.name == newNews.name
+        val DIFF_CALLBACK: DiffUtil.ItemCallback<BeritaResponseItem> =
+            object : DiffUtil.ItemCallback<BeritaResponseItem>() {
+                override fun areItemsTheSame(
+                    oldNews: BeritaResponseItem,
+                    newNews: BeritaResponseItem
+                ): Boolean {
+                    return oldNews.judulBerita == newNews.judulBerita
                 }
 
                 @SuppressLint("DiffUtilEquals")
-                override fun areContentsTheSame(oldNews: Hero, newNews: Hero): Boolean {
+                override fun areContentsTheSame(
+                    oldNews: BeritaResponseItem,
+                    newNews: BeritaResponseItem
+                ): Boolean {
                     return oldNews == newNews
                 }
             }

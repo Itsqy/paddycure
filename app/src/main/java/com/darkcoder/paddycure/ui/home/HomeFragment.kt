@@ -20,6 +20,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
+import com.darkcoder.paddycure.data.model.BeritaResponseItem
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
 import com.darkcoder.paddycure.dummies.Hero
@@ -28,10 +29,7 @@ import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -46,17 +44,14 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private val REQUEST_LOCATION_SETTINGS = 1001
-    private lateinit var mMap: GoogleMap
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
     private val homeViewModel: HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding?.root
-
         getMyLastLocation()
     }
 
@@ -66,31 +61,36 @@ class HomeFragment : Fragment() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         getMyLastLocation()
         setGoodMorning()
-        composeViewSetUp()
 
+        // get data berita
         val list: ArrayList<Hero> = arrayListOf()
         list.addAll(HeroesData.heroes)
-        val newsAdapter = NewsAdapter()
-        binding?.rvRecentNews?.apply {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = newsAdapter
-            newsAdapter.submitList(list)
+        homeViewModel.setNews()
+        homeViewModel.getNews().observe(requireActivity()) { news ->
+            val newsAdapter = NewsAdapter()
+            binding?.rvRecentNews?.apply {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = newsAdapter
+                newsAdapter.submitList(news)
+
+            }
+            composeViewSetUp(news)
         }
 
 
     }
 
-    private fun composeViewSetUp() {
+    private fun composeViewSetUp(news: ArrayList<BeritaResponseItem>?) {
         binding?.composviewList?.setContent {
-
             MaterialTheme {
-                TopNewsList()
+                if (news != null) {
+                    TopNewsList(news)
+                }
             }
         }
-
-
     }
+
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()

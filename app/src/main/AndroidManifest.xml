@@ -42,17 +42,6 @@
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
 
         <activity
-            android:name=".ui.profile.profilemenu.ProfileActivity"
-            android:exported="false"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-
-        <activity
-            android:name=".ui.product.shop.ShopActivity"
-            android:exported="false"
-            android:label="@string/title_activity_shop"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-        <activity
             android:name=".ui.product.productdetails.ProductDetailsActivity"
             android:exported="false"
             android:label="@string/title_activity_product_details"
