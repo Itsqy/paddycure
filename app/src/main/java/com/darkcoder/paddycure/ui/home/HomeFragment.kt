@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +20,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
+import com.darkcoder.paddycure.data.model.BeritaResponseItem
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
 import com.darkcoder.paddycure.dummies.Hero
@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding?.root
-
         getMyLastLocation()
     }
 
@@ -62,8 +61,8 @@ class HomeFragment : Fragment() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         getMyLastLocation()
         setGoodMorning()
-        composeViewSetUp()
 
+        // get data berita
         val list: ArrayList<Hero> = arrayListOf()
         list.addAll(HeroesData.heroes)
         homeViewModel.setNews()
@@ -73,23 +72,25 @@ class HomeFragment : Fragment() {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = newsAdapter
-                Log.d("dataadapter", "onViewCreated: $news")
                 newsAdapter.submitList(news)
+
             }
+            composeViewSetUp(news)
         }
 
 
     }
 
-    private fun composeViewSetUp() {
+    private fun composeViewSetUp(news: ArrayList<BeritaResponseItem>?) {
         binding?.composviewList?.setContent {
             MaterialTheme {
-                TopNewsList()
+                if (news != null) {
+                    TopNewsList(news)
+                }
             }
         }
-
-
     }
+
 
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()

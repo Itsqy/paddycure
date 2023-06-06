@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -26,11 +24,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.darkcoder.paddycure.R
-import com.darkcoder.paddycure.dummies.HeroesData
+import com.darkcoder.paddycure.data.model.BeritaResponseItem
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.fonts
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.greyColor
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.primColor
@@ -41,20 +38,17 @@ import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 
 @Composable
-fun TopNewsList() {
+fun TopNewsList(newsData: ArrayList<BeritaResponseItem>) {
 
     Column() {
 
         LazyRow() {
-            items(HeroesData.heroes, key = { it.id }) {
-
-                TopNewsItem(photo = it.img, title = it.name)
-
+            items(newsData, key = { it.id }) {
+                TopNewsItem(photo = it.imgBerita, title = it.judulBerita)
 
             }
 
         }
-
 
 
     }
@@ -165,7 +159,7 @@ fun RecentNewsItem(photo: String, title: String) {
             ) {
 
                 Text(
-                    text = "What should we do when x happen?",
+                    text = title,
                     fontSize = 10.sp,
                     fontFamily = fonts,
                     fontWeight = FontWeight.SemiBold,

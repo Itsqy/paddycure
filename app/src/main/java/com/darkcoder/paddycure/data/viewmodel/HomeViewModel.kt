@@ -45,7 +45,7 @@ class HomeViewModel : ViewModel() {
                 if (response != null) {
 //                    keterangan.postValue(ket!!)
                     news.postValue(result)
-                    Log.d("news", "onViewCreated: $call")
+                    Log.d("news", "onViewCreated: ${response.body()}")
                 } else {
                     Log.d("null", "onResponse:${response.body()}")
                 }
