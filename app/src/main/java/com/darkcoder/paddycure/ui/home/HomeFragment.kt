@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,10 +29,7 @@ import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import cz.msebera.android.httpclient.Header
@@ -46,10 +44,8 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
     private val REQUEST_LOCATION_SETTINGS = 1001
-    private lateinit var mMap: GoogleMap
+
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var locationCallback: LocationCallback
     private val homeViewModel: HomeViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -70,12 +66,16 @@ class HomeFragment : Fragment() {
 
         val list: ArrayList<Hero> = arrayListOf()
         list.addAll(HeroesData.heroes)
-        val newsAdapter = NewsAdapter()
-        binding?.rvRecentNews?.apply {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = newsAdapter
-            newsAdapter.submitList(list)
+        homeViewModel.setNews()
+        homeViewModel.getNews().observe(requireActivity()) { news ->
+            val newsAdapter = NewsAdapter()
+            binding?.rvRecentNews?.apply {
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = newsAdapter
+                Log.d("dataadapter", "onViewCreated: $news")
+                newsAdapter.submitList(news)
+            }
         }
 
 
@@ -83,7 +83,6 @@ class HomeFragment : Fragment() {
 
     private fun composeViewSetUp() {
         binding?.composviewList?.setContent {
-
             MaterialTheme {
                 TopNewsList()
             }

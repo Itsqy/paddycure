@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.data.network
 
+import com.darkcoder.paddycure.data.model.BeritaResponse
 import com.darkcoder.paddycure.data.model.WeatherResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -12,5 +13,9 @@ interface ApiService {
     fun getWeather(
         @Query("q") q: String,
     ): Call<WeatherResponse>
+
+
+    @GET("/berita")
+    fun getNews(): Call<BeritaResponse>
 
 }
