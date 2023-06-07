@@ -2,6 +2,8 @@ package com.darkcoder.paddycure.ui.customview
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
@@ -73,7 +75,8 @@ class MyEditTextPassword : TextInputEditText, View.OnTouchListener {
     }
 
     private fun hideEyeButton() {
-        setButtonDrawables()
+        val transparentDrawable = ColorDrawable(Color.TRANSPARENT)
+        setButtonDrawables(endOfTheText = transparentDrawable)
     }
 
     private fun setButtonDrawables(
@@ -105,31 +108,30 @@ class MyEditTextPassword : TextInputEditText, View.OnTouchListener {
             }
 
             if (isEyeButtonClicked) {
-                return when (event.action) {
+                when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
                         hideEyeButton()
-                        if (transformationMethod.equals(HideReturnsTransformationMethod.getInstance())) {
+                        if (transformationMethod?.equals(HideReturnsTransformationMethod.getInstance()) == true) {
                             transformationMethod =
                                 PasswordTransformationMethod.getInstance() // hide password
                             eyeIcon = ContextCompat.getDrawable(
                                 context,
                                 R.drawable.ic_eye_off
                             ) as Drawable
-                            showEyeButton()
                         } else {
                             transformationMethod =
                                 HideReturnsTransformationMethod.getInstance() // show password
                             eyeIcon =
                                 ContextCompat.getDrawable(context, R.drawable.ic_eye) as Drawable
-                            showEyeButton()
                         }
-                        true
+                        showEyeButton()
+                        return true
                     }
-
-                    else -> false
+                    // Handle other MotionEvent actions if needed
                 }
-            } else return false
+            }
         }
         return false
     }
+
 }

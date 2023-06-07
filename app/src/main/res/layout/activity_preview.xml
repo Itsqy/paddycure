@@ -64,86 +64,98 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_preview"
-        android:layout_width="310dp"
-        android:layout_height="508dp"
-        android:layout_marginTop="88dp"
-        android:background="@drawable/cardview_login"
-        android:elevation="20dp"
-        android:src="@drawable/ic_camera_grey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/btn_gallery"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="33dp"
-        android:background="@drawable/bg_button_grey"
-        android:elevation="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_preview">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_gallery" />
+            <ImageView
+                android:id="@+id/iv_preview"
+                android:layout_width="310dp"
+                android:layout_height="508dp"
+                android:layout_marginTop="88dp"
+                android:background="@drawable/cardview_login"
+                android:elevation="20dp"
+                android:src="@drawable/ic_camera_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Gallery"
-            android:textColor="@color/white"
-            android:textSize="13sp" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_gallery"
+                android:layout_width="152dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="33dp"
+                android:background="@drawable/bg_button_grey"
+                android:elevation="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_preview">
 
-    <LinearLayout
-        android:id="@+id/btn_camera"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="23dp"
-        android:background="@drawable/bg_button_grey"
-        android:elevation="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_preview">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_gallery" />
 
-        <ImageView
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_camera_rounded" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Gallery"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Gallery"
-            android:textColor="@color/white"
-            android:textSize="13sp" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btn_camera"
+                android:layout_width="152dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="33dp"
+                android:layout_marginEnd="23dp"
+                android:background="@drawable/bg_button_grey"
+                android:elevation="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_preview">
 
-    <Button
-        android:layout_width="314dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/bg_button"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Check Result"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="@id/btn_camera"
-        app:layout_constraintStart_toStartOf="@id/btn_gallery"
-        app:layout_constraintTop_toBottomOf="@id/btn_gallery" />
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:src="@drawable/ic_camera_rounded" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Gallery"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="314dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Check Result"
+                android:textSize="13sp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/btn_camera"
+                app:layout_constraintStart_toStartOf="@id/btn_gallery"
+                app:layout_constraintTop_toBottomOf="@id/btn_gallery" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
