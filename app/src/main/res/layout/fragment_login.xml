@@ -142,6 +142,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="58dp"
             android:elevation="5dp"
+            android:enabled="false"
             android:fontFamily="@font/poppins_medium"
             android:paddingHorizontal="35dp"
             android:text="Login"

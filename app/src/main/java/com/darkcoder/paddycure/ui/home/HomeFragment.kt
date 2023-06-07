@@ -28,6 +28,7 @@ import com.darkcoder.paddycure.dummies.HeroesData
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
+import com.darkcoder.paddycure.ui.scan.preview.PreviewActivity
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.loopj.android.http.AsyncHttpClient
@@ -76,6 +77,13 @@ class HomeFragment : Fragment() {
 
             }
             composeViewSetUp(news)
+        }
+
+        binding?.apply {
+            bgScanFeature?.setOnClickListener {
+                startActivity(Intent(requireActivity(), PreviewActivity::class.java))
+            }
+
         }
 
 

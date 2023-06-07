@@ -28,7 +28,7 @@ class SecondActivity : AppCompatActivity() {
 
     }
 
-    fun setButtomNavWithConfigChanges() {
+    private fun setButtomNavWithConfigChanges() {
 
         fm.beginTransaction().add(R.id.fragment_container, homeMenu).show(homeMenu).commit()
         binding.btnBottomNav.setOnNavigationItemSelectedListener { item ->
