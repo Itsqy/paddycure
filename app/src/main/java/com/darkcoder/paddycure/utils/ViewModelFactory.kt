@@ -14,6 +14,7 @@ class ViewModelFactory(private val pref: UserPreferences) :
                 LoginViewModel(pref) as T
             }
 
+
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }

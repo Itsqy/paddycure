@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.ui.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.Html
@@ -9,16 +10,21 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.darkcoder.paddycure.R
+import com.darkcoder.paddycure.data.viewmodel.RegisterViewModel
 import com.darkcoder.paddycure.databinding.FragmentRegisterBinding
+import com.darkcoder.paddycure.ui.SecondActivity
 
 
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding
+    private val registerViewModel: RegisterViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,11 +82,36 @@ class RegisterFragment : Fragment() {
 
                 }
             })
+            btnRegister.setOnClickListener {
+                registerViewModel.register(
+                    edtUsername.text.toString(),
+                    edtEmailRegister.text.toString(),
+                    edtPassRegister.text.toString()
+                )
+            }
 
 
         }
 
+        showToast()
 
+
+    }
+
+    private fun showToast() {
+        registerViewModel.showStatus.observe(requireActivity()) { status ->
+            if (status == true) {
+                registerViewModel.showMessage.observe(requireActivity()) { msg ->
+                    Toast.makeText(requireContext(), "$msg", Toast.LENGTH_SHORT).show()
+
+                }
+            } else {
+                registerViewModel.showMessage.observe(requireActivity()) { msg ->
+                    Toast.makeText(requireContext(), "$msg", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        }
     }
 
     private fun setUpCustomView() {
