@@ -7,7 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.darkcoder.paddycure.data.model.BeritaResponseItem
+import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
 import com.darkcoder.paddycure.databinding.ItemNewsLayoutBinding
 import com.darkcoder.paddycure.ui.home.compose.RecentNewsItem
 

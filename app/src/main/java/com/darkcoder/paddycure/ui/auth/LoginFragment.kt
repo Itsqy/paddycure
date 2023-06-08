@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.ui.auth
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -11,6 +12,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -18,13 +22,19 @@ import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.databinding.FragmentLoginBinding
 import com.darkcoder.paddycure.ui.SecondActivity
+import com.darkcoder.paddycure.utils.UserPreferences
+import com.darkcoder.paddycure.utils.ViewModelFactory
 
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore("settings")
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding
-    private val loginViewModel: LoginViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels {
+        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,11 +53,10 @@ class LoginFragment : Fragment() {
         val welcome = "Welcome to " + "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
         showToast()
         binding?.apply {
-            val email = edtEmailLogin.text.toString().trim()
-            val pass = edtPassLogin.text.toString().trim()
+
             tvWelcome?.text = Html.fromHtml(welcome)
             btnLogin.setOnClickListener {
-                loginViewModel.login(email, pass)
+                loginViewModel.login(edtEmailLogin.text.toString(), edtPassLogin.text.toString())
             }
             tvToRegister?.setOnClickListener {
                 view.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -62,11 +71,11 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    setUpCustomView(email, pass)
+                    setUpCustomView()
                 }
 
                 override fun afterTextChanged(s: Editable?) {
-                    setUpCustomView(email, pass)
+                    setUpCustomView()
                 }
             })
             edtEmailLogin.addTextChangedListener(object : TextWatcher {
@@ -80,11 +89,11 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    setUpCustomView(email, pass)
+                    setUpCustomView()
                 }
 
                 override fun afterTextChanged(s: Editable?) {
-                    setUpCustomView(email, pass)
+                    setUpCustomView()
 
                 }
             })
@@ -109,11 +118,13 @@ class LoginFragment : Fragment() {
 
     }
 
-    private fun setUpCustomView(email: String, pass: String) {
+    private fun setUpCustomView() {
         binding?.apply {
+            val pass = edtPassLogin.text.toString()
+            val email = edtEmailLogin.text.toString().trim()
             Log.d("edtPass", email)
             btnLogin.isEnabled =
-                pass != null && email != null && pass.length >= 6 && Patterns.EMAIL_ADDRESS.matcher(
+                pass != null && email != null && pass.length >= 8 && Patterns.EMAIL_ADDRESS.matcher(
                     email
                 ).matches()
         }

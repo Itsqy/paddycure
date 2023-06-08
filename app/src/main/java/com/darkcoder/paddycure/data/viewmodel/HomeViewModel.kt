@@ -3,10 +3,10 @@ package com.darkcoder.paddycure.data.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.darkcoder.paddycure.data.model.BeritaResponse
-import com.darkcoder.paddycure.data.model.BeritaResponseItem
-import com.darkcoder.paddycure.data.model.Current
-import com.darkcoder.paddycure.data.model.WeatherResponse
+import com.darkcoder.paddycure.data.model.remote.BeritaResponse
+import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
+import com.darkcoder.paddycure.data.model.remote.Current
+import com.darkcoder.paddycure.data.model.remote.WeatherResponse
 import com.darkcoder.paddycure.data.network.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback

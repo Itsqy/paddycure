@@ -4,8 +4,12 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.darkcoder.paddycure.data.model.LoginResponse
+import androidx.lifecycle.viewModelScope
+import com.darkcoder.paddycure.data.model.local.UserModel
+import com.darkcoder.paddycure.data.model.remote.LoginResponse
 import com.darkcoder.paddycure.data.network.ApiConfig
+import com.darkcoder.paddycure.utils.UserPreferences
+import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
@@ -13,7 +17,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(val sharedPref: UserPreferences) : ViewModel() {
 
     private val _message = MutableLiveData<String>()
     val showMessage: LiveData<String> = _message
@@ -23,6 +27,7 @@ class LoginViewModel : ViewModel() {
     val showStatus: LiveData<Boolean> = _result
 
     fun login(userame: String, passWord: String) {
+
         val jsonObject = JSONObject()
         jsonObject.put("username", userame)
         jsonObject.put("password", passWord)
@@ -34,11 +39,25 @@ class LoginViewModel : ViewModel() {
                 Log.d("loginData", "onResponse: ${response.body().toString()}")
                 val result = response.body()?.result
                 val ket = response.body()?.keterangan
-                val body = response.body()?.user
+                val user = response.body()?.user
+                val body = response.body()
+
+                val dataUser = body?.let {
+                    UserModel(
+                        user?.username.toString(),
+                        user?.id.toString(),
+                        it.token,
+                        true
+                    )
+                }
+
+                if (dataUser != null) {
+                    saveUser(dataUser)
+                }
 
                 if (result == true) {
                     _result.value = response.body()?.result
-                    _message.value = body?.username
+                    _message.value = user?.username
                 } else {
                     _result.value = response.body()?.result
                     _message.value = ket.toString()
@@ -50,4 +69,11 @@ class LoginViewModel : ViewModel() {
             }
         })
     }
+
+    fun saveUser(user: UserModel) {
+        viewModelScope.launch {
+            sharedPref.saveUser(user)
+        }
+    }
+
 }
