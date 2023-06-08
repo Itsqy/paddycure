@@ -110,7 +110,7 @@ class MyEditTextPassword : TextInputEditText, View.OnTouchListener {
             if (isEyeButtonClicked) {
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
-                        hideEyeButton()
+
                         if (transformationMethod?.equals(HideReturnsTransformationMethod.getInstance()) == true) {
                             transformationMethod =
                                 PasswordTransformationMethod.getInstance() // hide password

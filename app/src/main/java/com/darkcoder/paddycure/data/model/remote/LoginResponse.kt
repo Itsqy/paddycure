@@ -1,4 +1,4 @@
-package com.darkcoder.paddycure.data.model
+package com.darkcoder.paddycure.data.model.remote
 
 import com.google.gson.annotations.SerializedName
 

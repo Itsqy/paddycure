@@ -1,15 +1,13 @@
 package com.darkcoder.paddycure.data.network
 
-import com.darkcoder.paddycure.data.model.BeritaResponse
-import com.darkcoder.paddycure.data.model.LoginResponse
-import com.darkcoder.paddycure.data.model.RegisterResponse
-import com.darkcoder.paddycure.data.model.WeatherResponse
-import okhttp3.MultipartBody
+import com.darkcoder.paddycure.data.model.remote.BeritaResponse
+import com.darkcoder.paddycure.data.model.remote.LoginResponse
+import com.darkcoder.paddycure.data.model.remote.RegisterResponse
+import com.darkcoder.paddycure.data.model.remote.WeatherResponse
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -29,17 +27,12 @@ interface ApiService {
     fun getNews(): Call<BeritaResponse>
 
     @Multipart
-    @POST("/users/login")
+    @POST("/users/register")
     fun register(
-        @Field("id") id: String,
         @Field("nama") nama: String,
-        @Field("img") img: MultipartBody.Part,
-        @Field("nomor_hp") nomor_hp: String,
-        @Field("role") role: String,
         @Field("username") username: String,
         @Field("password") password: String,
-
-        ): Call<RegisterResponse>
+    ): Call<RegisterResponse>
 
 
     @Headers("Content-Type: application/json")

@@ -20,7 +20,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
-import com.darkcoder.paddycure.data.model.BeritaResponseItem
+import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
 import com.darkcoder.paddycure.dummies.Hero

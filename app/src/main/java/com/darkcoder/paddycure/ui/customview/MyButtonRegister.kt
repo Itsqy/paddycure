@@ -39,7 +39,7 @@ class MyButtonRegister : AppCompatButton {
         textSize = 15f
         gravity = Gravity.CENTER
         text =
-            if (isEnabled) "Register" else "filled"
+            if (isEnabled) "Register" else "fill first"
     }
 
     private fun init() {

@@ -27,7 +27,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.darkcoder.paddycure.R
-import com.darkcoder.paddycure.data.model.BeritaResponseItem
+import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.fonts
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.greyColor
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.primColor

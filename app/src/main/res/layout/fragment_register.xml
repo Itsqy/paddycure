@@ -144,6 +144,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/border_corner"
             android:elevation="10dp"
+            android:enabled="false"
             android:fontFamily="@font/poppins_medium"
             android:hint="email"
             android:paddingHorizontal="35dp"

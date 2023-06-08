@@ -1,4 +1,4 @@
-package com.darkcoder.paddycure.data.model
+package com.darkcoder.paddycure.data.model.remote
 
 import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class WeatherResponse(
 
-	@field:SerializedName("current")
+    @field:SerializedName("current")
 	val current: ArrayList<Current>,
 
-	@field:SerializedName("location")
+    @field:SerializedName("location")
 	val location: Location? = null
 ) : Parcelable
 
@@ -30,73 +30,73 @@ data class Condition(
 @Parcelize
 data class Current(
 
-	@field:SerializedName("feelslike_c")
+    @field:SerializedName("feelslike_c")
 	val feelslikeC: String? = null,
 
-	@field:SerializedName("uv")
+    @field:SerializedName("uv")
 	val uv: String? = null,
 
-	@field:SerializedName("last_updated")
+    @field:SerializedName("last_updated")
 	val lastUpdated: String? = null,
 
-	@field:SerializedName("feelslike_f")
+    @field:SerializedName("feelslike_f")
 	val feelslikeF: String? = null,
 
-	@field:SerializedName("wind_degree")
+    @field:SerializedName("wind_degree")
 	val windDegree: String? = null,
 
-	@field:SerializedName("last_updated_epoch")
+    @field:SerializedName("last_updated_epoch")
 	val lastUpdatedEpoch: String? = null,
 
-	@field:SerializedName("is_day")
+    @field:SerializedName("is_day")
 	val isDay: String? = null,
 
-	@field:SerializedName("precip_in")
+    @field:SerializedName("precip_in")
 	val precipIn: String? = null,
 
-	@field:SerializedName("wind_dir")
+    @field:SerializedName("wind_dir")
 	val windDir: String? = null,
 
-	@field:SerializedName("gust_mph")
+    @field:SerializedName("gust_mph")
 	val gustMph: String? = null,
 
-	@field:SerializedName("temp_c")
+    @field:SerializedName("temp_c")
 	val tempC: String? = null,
 
-	@field:SerializedName("pressure_in")
+    @field:SerializedName("pressure_in")
 	val pressureIn: String? = null,
 
-	@field:SerializedName("gust_kph")
+    @field:SerializedName("gust_kph")
 	val gustKph: String? = null,
 
-	@field:SerializedName("temp_f")
+    @field:SerializedName("temp_f")
 	val tempF: String? = null,
 
-	@field:SerializedName("precip_mm")
+    @field:SerializedName("precip_mm")
 	val precipMm: String? = null,
 
-	@field:SerializedName("cloud")
+    @field:SerializedName("cloud")
 	val cloud: String? = null,
 
-	@field:SerializedName("wind_kph")
+    @field:SerializedName("wind_kph")
 	val windKph: String? = null,
 
-	@field:SerializedName("condition")
+    @field:SerializedName("condition")
 	val condition: Condition? = null,
 
-	@field:SerializedName("wind_mph")
+    @field:SerializedName("wind_mph")
 	val windMph: String? = null,
 
-	@field:SerializedName("vis_km")
+    @field:SerializedName("vis_km")
 	val visKm: String? = null,
 
-	@field:SerializedName("humidity")
+    @field:SerializedName("humidity")
 	val humidity: String? = null,
 
-	@field:SerializedName("pressure_mb")
+    @field:SerializedName("pressure_mb")
 	val pressureMb: String? = null,
 
-	@field:SerializedName("vis_miles")
+    @field:SerializedName("vis_miles")
 	val visMiles: String? = null
 ) : Parcelable
 
