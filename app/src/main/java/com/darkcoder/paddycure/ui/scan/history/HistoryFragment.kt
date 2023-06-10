@@ -21,32 +21,6 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding
 
 
-    companion object {
-        const val CAMERA_X_RESULT = 200
-
-        private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
-        private const val REQUEST_CODE_PERMISSIONS = 10
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (!allPermissionsGranted()) {
-            Toast.makeText(
-                requireContext(),
-                "Tidak mendapatkan Izin untuk memulai Kamera",
-                Toast.LENGTH_SHORT
-            ).show()
-            requireActivity().finish()
-        }
-    }
-
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
-    }
 
 
     override fun onCreateView(
@@ -60,7 +34,7 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        permissionCamera()
+
         setupComposeList()
 
     }
@@ -73,18 +47,7 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    private fun permissionCamera() {
-        if (!allPermissionsGranted()) {
-            ActivityCompat.requestPermissions(
-                requireActivity(),
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
-            )
-            Toast.makeText(requireContext(), "tidak mendapat permission", Toast.LENGTH_SHORT).show()
 
-        } else {
-        }
-    }
 
 
 }

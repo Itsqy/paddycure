@@ -23,6 +23,7 @@ import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.databinding.FragmentLoginBinding
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.utils.UserPreferences
+import com.darkcoder.paddycure.utils.Utils
 import com.darkcoder.paddycure.utils.ViewModelFactory
 
 
@@ -49,14 +50,20 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding?.layoutLogin?.let { Utils().setupUI(it, requireActivity()) }
         val welcome = "Welcome to " + "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
         showToast()
         binding?.apply {
-
+            loginViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+                if (isLoading) loadingLottie?.visibility =
+                    View.VISIBLE else loadingLottie?.visibility = View.INVISIBLE
+            }
             tvWelcome?.text = Html.fromHtml(welcome)
             btnLogin.setOnClickListener {
-                loginViewModel.login(edtEmailLogin.text.toString(), edtPassLogin.text.toString())
+                loginViewModel.login(
+                    edtEmailLogin.text.toString(),
+                    edtPassLogin.text.toString()
+                )
             }
             tvToRegister?.setOnClickListener {
                 view.findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
@@ -100,6 +107,7 @@ class LoginFragment : Fragment() {
         }
 
     }
+
 
     private fun showToast() {
         loginViewModel.showStatus.observe(requireActivity()) { status ->

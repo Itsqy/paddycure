@@ -143,14 +143,16 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_check_result"
                 android:layout_width="314dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_button"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Check Result"
+                android:textColor="@color/white"
                 android:textSize="13sp"
-                android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/btn_camera"
                 app:layout_constraintStart_toStartOf="@id/btn_gallery"

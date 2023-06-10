@@ -3,7 +3,9 @@ package com.darkcoder.paddycure.data.network
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
+import com.darkcoder.paddycure.data.model.remote.ScanResponse
 import com.darkcoder.paddycure.data.model.remote.WeatherResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -30,9 +32,9 @@ interface ApiService {
     @Multipart
     @POST("/users/register")
     fun register(
-      @Part("nama") nama :String,
-      @Part("username") username :String,
-      @Part("password") password :String,
+        @Part("nama") nama: String,
+        @Part("username") username: String,
+        @Part("password") password: String,
     ): Call<RegisterResponse>
 
 
@@ -41,5 +43,10 @@ interface ApiService {
     fun login(
         @Body requestBody: RequestBody
     ): Call<LoginResponse>
+
+
+    @Multipart
+    @POST("kamuKenapaSiniCerita")
+    fun scanDisease(@Part file: MultipartBody.Part): Call<ScanResponse>
 
 }

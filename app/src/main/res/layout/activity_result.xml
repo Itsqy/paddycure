@@ -55,6 +55,7 @@
             android:layout_height="128dp"
             android:layout_marginTop="40dp"
             android:elevation="3dp"
+
             android:src="@drawable/cardview_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,11 +80,25 @@
             android:layout_marginTop="15dp"
             android:elevation="3dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="75 %"
+            android:text="75"
             android:textColor="@color/primaryColor"
             android:textSize="36sp"
             app:layout_constraintStart_toEndOf="@id/ic_activity"
             app:layout_constraintTop_toTopOf="@id/cardview_result" />
+
+        <TextView
+            android:id="@+id/percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:elevation="3dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="%"
+            android:textColor="@color/primaryColor"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_percentage"
+            app:layout_constraintStart_toEndOf="@id/tv_percentage"
+            app:layout_constraintTop_toTopOf="@id/tv_percentage" />
 
         <TextView
             android:id="@+id/tv_label_disease"

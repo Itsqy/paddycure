@@ -26,8 +26,11 @@ class LoginViewModel(val sharedPref: UserPreferences) : ViewModel() {
     private val _result = MutableLiveData<Boolean>()
     val showStatus: LiveData<Boolean> = _result
 
-    fun login(userame: String, passWord: String) {
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
+    fun login(userame: String, passWord: String) {
+        _isLoading.value = true
         val jsonObject = JSONObject()
         jsonObject.put("username", userame)
         jsonObject.put("password", passWord)
@@ -36,35 +39,48 @@ class LoginViewModel(val sharedPref: UserPreferences) : ViewModel() {
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
         ApiConfig.getServiceNews().login(requestBody).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                Log.d("loginData", "onResponse: ${response.body().toString()}")
+
                 val result = response.body()?.result
                 val ket = response.body()?.keterangan
                 val user = response.body()?.user
                 val body = response.body()
 
-                val dataUser = body?.let {
-                    UserModel(
-                        user?.username.toString(),
-                        user?.id.toString(),
-                        it.token,
-                        true
-                    )
-                }
 
-                if (dataUser != null) {
-                    saveUser(dataUser)
-                }
+                if (response.isSuccessful) {
+                    if (result != false) {
+                        _isLoading.value = false
+                        _result.value = response.body()?.result
+                        _message.value = user?.username
+                        val dataUser = body?.let {
+                            UserModel(
+                                user?.username.toString(),
+                                user?.id.toString(),
+                                it.token,
+                                true
+                            )
+                        }
 
-                if (result == true) {
-                    _result.value = response.body()?.result
-                    _message.value = user?.username
+                        if (dataUser != null) {
+                            saveUser(dataUser)
+                        }
+
+                        Log.d("loginData", "onResponse: ${result.toString()}")
+                    } else {
+                        _isLoading.value = false
+                        _result.value = response.body()?.result
+                        _message.value = ket.toString()
+                        Log.d("loginDataNull", "onResponse: ${result.toString()}")
+                    }
+
                 } else {
-                    _result.value = response.body()?.result
-                    _message.value = ket.toString()
+                    _isLoading.value = false
+                    Log.d("response not success", "onResponse:${response.body()?.result} ")
                 }
+
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                _isLoading.value = false
                 Log.d("loginDataError", "onResponse: ${t.toString()}")
             }
         })
