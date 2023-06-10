@@ -6,9 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
 import com.darkcoder.paddycure.data.network.ApiConfig
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,25 +19,13 @@ class RegisterViewModel() : ViewModel() {
 
     private val _result = MutableLiveData<Boolean>()
     val showStatus: LiveData<Boolean> = _result
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
 
     fun register(name: String, userame: String, passWord: String) {
 
-//        val requestBody: RequestBody = MultipartBody.Builder()
-//            .setType(MultipartBody.FORM)
-//            .addFormDataPart("nama", name)
-//            .addFormDataPart("username", userame)
-//            .addFormDataPart("password", passWord)
-//            .build()
-
-        val jsonObject = JSONObject()
-        jsonObject.put("nama", name)
-        jsonObject.put("username", userame)
-        jsonObject.put("password", passWord)
-        val jsonObjectString = jsonObject.toString()
-
-        val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
-
+        _isLoading.value = true
 
         ApiConfig.getServiceNews().register(name, userame, passWord)
             .enqueue(object : Callback<RegisterResponse> {
@@ -52,19 +37,27 @@ class RegisterViewModel() : ViewModel() {
                     val result = response.body()?.result
                     val ket = response.body()?.keterangan
                     val user = response.body()?.data
-                    val body = response.body()
 
-
-                    if (result == true) {
-                        _result.value = response.body()?.result
-                        _message.value = user?.username
+                    if (response.isSuccessful) {
+                        if (result == true) {
+                            _isLoading.value = false
+                            _result.value = response.body()?.result
+                            _message.value = user?.username
+                        } else {
+                            _isLoading.value = false
+                            _result.value = response.body()?.result
+                            _message.value = ket.toString()
+                        }
                     } else {
-                        _result.value = response.body()?.result
-                        _message.value = ket.toString()
+                        _isLoading.value = false
+                        _message.value = response.body().toString()
+                        Log.d("response not success", "onResponse:${response.body()?.result} ")
                     }
+
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                    _isLoading.value = false
                     Log.d("loginDataError", "onResponse: ${t.toString()}")
                 }
             })
