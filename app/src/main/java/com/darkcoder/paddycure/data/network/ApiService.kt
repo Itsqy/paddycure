@@ -1,7 +1,9 @@
 package com.darkcoder.paddycure.data.network
 
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
+import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
+import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
 import com.darkcoder.paddycure.data.model.remote.WeatherResponse
 import okhttp3.RequestBody
@@ -12,6 +14,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -42,4 +45,10 @@ interface ApiService {
         @Body requestBody: RequestBody
     ): Call<LoginResponse>
 
+
+    @GET("produk")
+    fun getProduct() : Call<ProductResponse>
+
+    @GET("produk/id/{id}")
+    fun getProductDetails(@Path("id") id: String) : Call<List<DataItem>>
 }
