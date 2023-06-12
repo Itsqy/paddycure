@@ -62,7 +62,7 @@ interface ApiService {
    @GET("produk")
     fun getProduct() : Call<ProductResponse>
 
-   @GET("produk/id/{id}")
-   fun getProductDetails(@Path("id") id: String) : Call<List<DataItem>>
+   @GET("produk/search/id/{id}")
+   fun getProductDetails(@Path("id") id: String) : Call<ProductResponse>
 
 }

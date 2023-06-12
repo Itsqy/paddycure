@@ -64,4 +64,5 @@
     <string name="email">Email</string>
     <string name="full_name">Full Name</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="similar_products">Similar Products</string>
 </resources>
