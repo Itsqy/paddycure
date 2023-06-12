@@ -55,8 +55,13 @@ class LoginFragment : Fragment() {
         showToast()
         binding?.apply {
             loginViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-                if (isLoading) loadingLottie?.visibility =
-                    View.VISIBLE else loadingLottie?.visibility = View.INVISIBLE
+                if (isLoading) {
+                    loadingLottie?.visibility = View.VISIBLE
+                    bgLoading?.visibility = View.VISIBLE
+                } else{
+                    loadingLottie?.visibility = View.INVISIBLE
+                    bgLoading?.visibility = View.INVISIBLE
+                }
             }
             tvWelcome?.text = Html.fromHtml(welcome)
             btnLogin.setOnClickListener {
@@ -113,7 +118,8 @@ class LoginFragment : Fragment() {
         loginViewModel.showStatus.observe(requireActivity()) { status ->
             if (status == true) {
                 loginViewModel.showMessage.observe(requireActivity()) { msg ->
-                    Toast.makeText(requireContext(), "$msg", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "$msg successfully login", Toast.LENGTH_SHORT)
+                        .show()
                     startActivity(Intent(requireActivity(), SecondActivity::class.java))
                 }
             } else {

@@ -2,22 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
-
 
     <application
         android:allowBackup="true"
@@ -30,18 +26,19 @@
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.scan.history.detail.DetailHistoryActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDTnM3PvnqgRD6XFQ9_OYVV6i_r0F_RLZw" />
-
 
         <activity
             android:name=".ui.profile.profileedit.ProfileEditActivity"
             android:exported="false"
             android:label="@string/title_activity_profile_edit"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-
         <activity
             android:name=".ui.product.productdetails.ProductDetailsActivity"
             android:exported="false"
@@ -52,7 +49,6 @@
             android:exported="false"
             android:label="@string/title_activity_cart"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-
         <activity
             android:name=".ui.scan.result.ResultActivity"
             android:exported="false" />
@@ -66,7 +62,6 @@
         <activity
             android:name=".ui.scan.preview.PreviewActivity"
             android:exported="true" />
-
         <activity
             android:name=".ui.auth.MainActivity"
             android:exported="true">

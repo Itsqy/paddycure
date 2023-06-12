@@ -16,20 +16,26 @@ class ScanViewModel : ViewModel() {
     private val _message = MutableLiveData<ScanResponse>()
     val showMessage: LiveData<ScanResponse> = _message
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     fun scanDisease(img: MultipartBody.Part) {
+        _isLoading.value = true
         ApiConfig.getServiceScan().scanDisease(img).enqueue(object : Callback<ScanResponse> {
             override fun onResponse(call: Call<ScanResponse>, response: Response<ScanResponse>) {
                 if (response.isSuccessful) {
-
+                    _isLoading.value = false
                     _message.value = response.body()
-                    Log.d("issuccessful", "onResponse:${response.body()} ")
+                    Log.d("base64String", "onResponse:${response.body()?.image?.data} ")
 
                 } else {
+                    _isLoading.value = false
                     Log.d("scanresponse", "onResponse:$response ")
                 }
             }
 
             override fun onFailure(call: Call<ScanResponse>, t: Throwable) {
+                _isLoading.value = false
                 Log.d("scanresponse", "onResponse:$t ")
             }
         })

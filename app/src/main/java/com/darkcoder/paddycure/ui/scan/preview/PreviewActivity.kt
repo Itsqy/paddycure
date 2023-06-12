@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -30,7 +31,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -38,7 +38,8 @@ class PreviewActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityPreviewBinding
     private var getFile: File? = null
-    private var imgURI: Uri? = null
+
+    //    private var imgURI: Uri? = null
     private val timeStamp: String = SimpleDateFormat(
         "dd-MMM-yyyy",
         Locale.US
@@ -63,7 +64,7 @@ class PreviewActivity : AppCompatActivity() {
             Toast.makeText(
                 this,
                 "Tidak mendapatkan Izin untuk memulai Kamera",
-                Toast.LENGTH_SHORT
+                Toast.LENGTH_LONG
             ).show()
             finish()
         }
@@ -81,7 +82,7 @@ class PreviewActivity : AppCompatActivity() {
                 REQUEST_CODE_PERMISSIONS
             )
             Toast.makeText(
-                this, "tidak mendapat permission", Toast.LENGTH_SHORT
+                this, "tidak mendapat permission", Toast.LENGTH_LONG
             ).show()
 
         } else {
@@ -95,6 +96,18 @@ class PreviewActivity : AppCompatActivity() {
         permissionCamera()
 
         binding.apply {
+            scanViewModel.isLoading.observe(this@PreviewActivity) { isLoading ->
+                if (isLoading) {
+                    loadingLottie?.visibility = View.VISIBLE
+                    bgLoading.visibility = View.VISIBLE
+                } else {
+                    loadingLottie?.visibility = View.INVISIBLE
+                    bgLoading?.visibility = View.INVISIBLE
+
+                }
+
+
+            }
             btnCamera.setOnClickListener { goToCamera() }
             btnGallery.setOnClickListener { goToGallery() }
             btnCheckResult.setOnClickListener { uploadImage() }
@@ -113,16 +126,18 @@ class PreviewActivity : AppCompatActivity() {
                 scanViewModel.scanDisease(imageMulti)
                 scanViewModel.showMessage.observe(this) { result ->
                     if (result.result == "true") {
-                        Toast.makeText(this, "${result.penyakit}", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "${file}", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, ResultActivity::class.java)
                         val bundle = Bundle()
                         bundle.putString("confidence", result.confidence)
                         bundle.putString("deskripsiPenyakit", result.deskripsiPenyakit)
                         bundle.putString("penyakit", result.penyakit)
                         bundle.putString("suggesion", result.suggesion)
-                        bundle.putString("img", imgURI.toString())
+                        bundle.putString("img", file.toString())
                         intent.putExtras(bundle)
                         startActivity(intent)
+                        finish()
+
 
                     } else {
                         Toast.makeText(this, "data tidak tersedia,coba lagi ", Toast.LENGTH_SHORT)
@@ -174,7 +189,7 @@ class PreviewActivity : AppCompatActivity() {
             val selectedImg: Uri = it.data?.data as Uri
             val myFile = uriToFile(selectedImg, this@PreviewActivity)
             getFile = myFile
-            imgURI = selectedImg
+//            imgURI = selectedImg
             binding.ivPreview.setImageURI(selectedImg)
         }
     }
@@ -218,11 +233,11 @@ class PreviewActivity : AppCompatActivity() {
             } as File
             val isBackCamera = it.data?.getBooleanExtra("isBackCamera", true) as Boolean
 
-//            getFile = myFile
-//            result = rotateBitmap(BitmapFactory.decodeFile(getFile?.path), isBackCamera)
+
             myFile.let { file ->
                 rotateFile(file, isBackCamera)
                 getFile = file
+//                imgURI = uriToFile()//
                 binding.ivPreview.setImageBitmap(BitmapFactory.decodeFile(getFile?.path))
             }
 

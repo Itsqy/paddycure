@@ -38,7 +38,6 @@
         android:background="@color/white"
         android:elevation="3dp"
         app:itemIconTint="@color/buttom_nav_color"
-        app:itemRippleColor="@color/white"
         app:itemTextColor="@color/buttom_nav_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

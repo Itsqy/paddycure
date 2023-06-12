@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.darkcoder.paddycure.data.model.local.UserModel
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
@@ -91,5 +92,12 @@ class LoginViewModel(val sharedPref: UserPreferences) : ViewModel() {
             sharedPref.saveUser(user)
         }
     }
+
+    fun getUser(): LiveData<UserModel> {
+        return sharedPref.getUser().asLiveData()
+    }
+
+    fun logOut() = viewModelScope.launch { sharedPref.logout() }
+
 
 }

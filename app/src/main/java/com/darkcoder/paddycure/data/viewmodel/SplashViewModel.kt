@@ -12,7 +12,6 @@ class SplashViewModel(private val userPreferences: UserPreferences) : ViewModel(
     fun getUser(): LiveData<UserModel> {
         return userPreferences.getUser().asLiveData()
     }
-
     fun logOut() = viewModelScope.launch { userPreferences.logout() }
 
 

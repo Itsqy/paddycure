@@ -2,6 +2,7 @@ package com.darkcoder.paddycure.data.network
 
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
+import com.darkcoder.paddycure.data.model.remote.PaddyResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
 import com.darkcoder.paddycure.data.model.remote.ScanResponse
 import com.darkcoder.paddycure.data.model.remote.WeatherResponse
@@ -14,6 +15,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -48,5 +50,11 @@ interface ApiService {
     @Multipart
     @POST("kamuKenapaSiniCerita")
     fun scanDisease(@Part file: MultipartBody.Part): Call<ScanResponse>
+
+    @GET("paddy/search/user_id/{user_id}")
+    fun getPaddyHistory(
+        @Path("user_id") userId: String
+    ): Call<PaddyResponse>
+
 
 }
