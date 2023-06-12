@@ -1,11 +1,20 @@
 package com.darkcoder.paddycure.utils
 
 import android.app.Activity
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 class Utils {
 
@@ -34,4 +43,22 @@ class Utils {
             inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun formatWaktu(input: String): String {
+        val utcDateTime = LocalDateTime.parse(input, DateTimeFormatter.ISO_DATE_TIME)
+            .atOffset(ZoneOffset.UTC)
+        val indonesiaDateTime = utcDateTime.withOffsetSameInstant(ZoneOffset.ofHours(7))
+        val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy HH:mm 'WIB'")
+
+        return indonesiaDateTime.format(formatter)
+    }
+//    fun convertBase64ToImage(base64String: String): Bitmap {
+//        val decodedBytes = Base64.decode(base64String, Base64.DEFAULT)
+//        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.size)
+//    }
+
+
+
+
 }

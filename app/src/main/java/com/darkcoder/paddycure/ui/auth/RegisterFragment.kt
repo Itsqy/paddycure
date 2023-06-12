@@ -40,15 +40,21 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val join = "Let's Join With" +
-                "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
+
 
         binding?.apply {
             layoutRegister?.let { Utils().setupUI(it, requireActivity()) }
             registerViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-                if (isLoading) loadingLottie?.visibility =
-                    View.VISIBLE else loadingLottie?.visibility = View.INVISIBLE
+                if (isLoading) {
+                    loadingLottie?.visibility = View.VISIBLE
+                    bgLoading?.visibility = View.VISIBLE
+                } else {
+                    loadingLottie?.visibility = View.INVISIBLE
+                    bgLoading?.visibility = View.INVISIBLE
+                }
             }
+            val join = "Let's Join With" +
+                    "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
             tvWelcome?.text = Html.fromHtml(join)
             tvToLogin.setOnClickListener {
                 view.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)

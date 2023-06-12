@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.scan.result.ResultActivity">
+    tools:context=".ui.scan.history.detail.DetailHistoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -229,4 +229,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_recomendation_product" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>
