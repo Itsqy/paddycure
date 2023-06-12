@@ -1,96 +1,56 @@
 package com.darkcoder.paddycure.ui.profile.profilemenu
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.fragment.app.Fragment
-import com.darkcoder.paddycure.ui.product.cart.components.OutlinePrimaryButton
-import com.darkcoder.paddycure.ui.product.cart.components.TopBar
-import com.darkcoder.paddycure.ui.product.cart.ui.theme.PaddycureTheme
-import com.darkcoder.paddycure.ui.product.cart.ui.theme.fonts
-import com.darkcoder.paddycure.ui.profile.profilemenu.components.ProfileInformation
-import com.darkcoder.paddycure.ui.profile.profilemenu.components.SettingSection
+import com.darkcoder.paddycure.R
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [ProfileFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class ProfileFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return ComposeView(requireContext()).apply {
-            setContent {
-                PaddycureTheme {
-                    // A surface container using the 'background' color from the theme
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                        color = MaterialTheme.colorScheme.background
-                    ) {
-                        Profile()
-                    }
-                }
-            }
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
         }
     }
 
-
-}
-
-@Composable
-fun Profile() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(16.dp)
-    ) {
-        TopBar("Profile")
-        Spacer(modifier = Modifier.height(30.dp))
-        ProfileInformation()
-        Spacer(modifier = Modifier.height(30.dp))
-        SettingSection()
-        Spacer(modifier = Modifier.height(20.dp))
-        Text(
-            text = "Settings",
-            fontFamily = fonts,
-            fontSize = 13.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color(0xff59981A),
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        OutlinePrimaryButton(
-            title = "Logout", modifier = Modifier
-                .padding(vertical = 10.dp)
-                .fillMaxWidth()
-                .heightIn(50.dp)
-        )
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun ProfilePreview() {
-    PaddycureTheme {
-        Profile()
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment ProfileFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic fun newInstance(param1: String, param2: String) =
+            ProfileFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
     }
 }
