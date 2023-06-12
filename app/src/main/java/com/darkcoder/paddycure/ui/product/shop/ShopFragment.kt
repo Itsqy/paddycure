@@ -54,6 +54,10 @@ class ShopFragment : Fragment() {
             binding.rvProduct.adapter = adapter
         }
 
+        shopViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
         /** Slider ViewPager2
         init()
         setUpTransformer()
@@ -64,6 +68,10 @@ class ShopFragment : Fragment() {
                 handler.postDelayed(runnable, 2000)
             }
         }) **/
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     /** Slider ViewPager2
