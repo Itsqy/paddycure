@@ -123,4 +123,8 @@ dependencies {
     //    Shimmer effect from jaewong -eum
     implementation "com.github.skydoves:landscapist-glide:2.1.13"
     implementation "com.github.skydoves:landscapist-placeholder:2.1.13"
+
+    //    Lottie
+    implementation 'com.airbnb.android:lottie:4.2.0'
+
 }

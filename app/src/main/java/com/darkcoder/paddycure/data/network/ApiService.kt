@@ -4,8 +4,11 @@ import com.darkcoder.paddycure.data.model.remote.BeritaResponse
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
 import com.darkcoder.paddycure.data.model.remote.ProductResponse
+import com.darkcoder.paddycure.data.model.remote.PaddyResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
+import com.darkcoder.paddycure.data.model.remote.ScanResponse
 import com.darkcoder.paddycure.data.model.remote.WeatherResponse
+import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -33,9 +36,9 @@ interface ApiService {
     @Multipart
     @POST("/users/register")
     fun register(
-      @Part("nama") nama :String,
-      @Part("username") username :String,
-      @Part("password") password :String,
+        @Part("nama") nama: String,
+        @Part("username") username: String,
+        @Part("password") password: String,
     ): Call<RegisterResponse>
 
 
@@ -46,9 +49,20 @@ interface ApiService {
     ): Call<LoginResponse>
 
 
-    @GET("produk")
+    @Multipart
+    @POST("kamuKenapaSiniCerita")
+    fun scanDisease(@Part file: MultipartBody.Part): Call<ScanResponse>
+
+    @GET("paddy/search/user_id/{user_id}")
+    fun getPaddyHistory(
+        @Path("user_id") userId: String
+    ): Call<PaddyResponse>
+
+  
+   @GET("produk")
     fun getProduct() : Call<ProductResponse>
 
-    @GET("produk/id/{id}")
-    fun getProductDetails(@Path("id") id: String) : Call<List<DataItem>>
+   @GET("produk/id/{id}")
+   fun getProductDetails(@Path("id") id: String) : Call<List<DataItem>>
+
 }

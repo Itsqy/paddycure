@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.data.network
 
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -58,6 +59,27 @@ object ApiConfig {
             .build()
 
         return retrofit.create(ApiService::class.java)
+    }
+
+    fun getServiceScan(): ApiService {
+        val gson = GsonBuilder().setLenient().create()
+
+        val loggingInterceptor =
+            HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client = OkHttpClient.Builder()
+            .addInterceptor(loggingInterceptor)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://34.30.218.83/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(client)
+
+            .build()
+
+        return retrofit.create(ApiService::class.java)
+
+
     }
 
 }

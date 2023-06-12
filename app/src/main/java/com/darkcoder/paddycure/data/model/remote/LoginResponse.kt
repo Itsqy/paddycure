@@ -11,7 +11,7 @@ data class LoginResponse(
     val user: User,
 
     @field:SerializedName("keterangan")
-    val keterangan: User,
+    val keterangan: String,
 
     @field:SerializedName("token")
     val token: String

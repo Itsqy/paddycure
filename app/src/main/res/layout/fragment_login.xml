@@ -2,10 +2,10 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_background"
-
     tools:context=".ui.auth.LoginFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -94,6 +94,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_lottie"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_paddycure" />
+
         <com.darkcoder.paddycure.ui.customview.MyEditTextEmail
             android:id="@+id/edt_email_login"
             android:layout_width="259dp"
@@ -115,6 +129,7 @@
             android:layout_marginTop="15dp"
             android:elevation="30dp"
             android:hint="password"
+            android:inputType="textPassword"
             android:paddingHorizontal="35dp"
             android:textColor="@color/primaryColor"
             android:textColorHint="@color/primaryColor"
@@ -175,6 +190,18 @@
             android:textColor="@color/primaryColor"
             app:layout_constraintStart_toEndOf="@id/tv_donthaveacc"
             app:layout_constraintTop_toTopOf="@id/tv_donthaveacc" />
+
+        <ImageView
+            android:id="@+id/bg_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.5"
+            android:src="@drawable/loading_bg"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

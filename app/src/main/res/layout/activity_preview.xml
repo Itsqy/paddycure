@@ -7,6 +7,29 @@
     tools:context=".ui.scan.preview.PreviewActivity">
 
     <ImageView
+        android:id="@+id/bg_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:elevation="30dp"
+        android:src="@drawable/loading_bg"
+        android:visibility="gone" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_lottie"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_paddycure" />
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="-100dp"
@@ -143,14 +166,16 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_check_result"
                 android:layout_width="314dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/bg_button"
                 android:fontFamily="@font/poppins_medium"
                 android:text="Check Result"
+                android:textColor="@color/white"
                 android:textSize="13sp"
-                android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/btn_camera"
                 app:layout_constraintStart_toStartOf="@id/btn_gallery"

@@ -1,6 +1,6 @@
 package com.darkcoder.paddycure.ui.auth
 
-import android.content.Intent
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.Html
@@ -11,13 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.viewmodel.RegisterViewModel
 import com.darkcoder.paddycure.databinding.FragmentRegisterBinding
-import com.darkcoder.paddycure.ui.SecondActivity
+import com.darkcoder.paddycure.utils.Utils
 
 
 class RegisterFragment : Fragment() {
@@ -38,10 +40,21 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val join = "Let's Join With" +
-                "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
+
 
         binding?.apply {
+            layoutRegister?.let { Utils().setupUI(it, requireActivity()) }
+            registerViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+                if (isLoading) {
+                    loadingLottie?.visibility = View.VISIBLE
+                    bgLoading?.visibility = View.VISIBLE
+                } else {
+                    loadingLottie?.visibility = View.INVISIBLE
+                    bgLoading?.visibility = View.INVISIBLE
+                }
+            }
+            val join = "Let's Join With" +
+                    "<br>" + " Paddy<font color = #ECF87F>Cure</font>"
             tvWelcome?.text = Html.fromHtml(join)
             tvToLogin.setOnClickListener {
                 view.findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
@@ -103,7 +116,15 @@ class RegisterFragment : Fragment() {
             if (status == true) {
                 registerViewModel.showMessage.observe(requireActivity()) { msg ->
                     Toast.makeText(requireContext(), "$msg", Toast.LENGTH_SHORT).show()
+                    val modal = AlertDialog.Builder(requireContext())
+                    modal.setTitle("Login Berhasil")
+                    modal.setMessage("$msg berhasil\nmendaftar silahkan untuk login ")
+                    modal.setPositiveButton("login") { dialog: DialogInterface, which: Int ->
+                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+                    }
 
+                    val dialog: AlertDialog = modal.create()
+                    dialog.show()
                 }
             } else {
                 registerViewModel.showMessage.observe(requireActivity()) { msg ->
