@@ -5,8 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import com.darkcoder.paddycure.data.model.local.PostOrder
 import com.darkcoder.paddycure.data.model.local.UserModel
 import com.darkcoder.paddycure.data.model.remote.DataItem
+import com.darkcoder.paddycure.data.model.remote.PostOrderResponse
 import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.network.ApiConfig
 import com.darkcoder.paddycure.utils.UserPreferences
@@ -66,6 +68,29 @@ class ProductDetailsViewModel() : ViewModel(){
             }
 
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e("errorProduct", "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    fun postOrder(data: PostOrder) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().postOrder(data)
+        client.enqueue(object : Callback<PostOrderResponse> {
+            override fun onResponse(
+                call: Call<PostOrderResponse>,
+                response: Response<PostOrderResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    Log.e("success", "onViewCreated: ${response.body()?.keterangan}")
+                } else {
+                    Log.e("null", "onViewCreated: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<PostOrderResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e("errorProduct", "onFailure: ${t.message}")
             }
