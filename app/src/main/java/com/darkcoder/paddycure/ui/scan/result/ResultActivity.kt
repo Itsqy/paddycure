@@ -1,15 +1,18 @@
 package com.darkcoder.paddycure.ui.scan.result
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.data.viewmodel.ResultViewModel
 import com.darkcoder.paddycure.databinding.ActivityResultBinding
+import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.auth.dataStore
 import com.darkcoder.paddycure.utils.UserPreferences
 import com.darkcoder.paddycure.utils.ViewModelFactory
@@ -40,14 +43,21 @@ class ResultActivity : AppCompatActivity() {
             val penyakit = receivedData.getString("penyakit")?.replace("\"", "")
             val suggesion = receivedData.getString("suggesion")?.replace("\"", "")
 
-            Log.d(
-                "resultActivitydata",
-                "onCreate: $confidence, $deskripsiPenyakit, $penyakit, $suggesion"
-            )
-            binding.tvPercentage.text = confidence
-            binding.tvAboutDisease.text = deskripsiPenyakit
-            binding.tvNameDisease.text = penyakit
-            binding.tvSugestion.text = suggesion
+            binding.apply {
+                tvPercentage.text = confidence
+                tvAboutDisease.text = deskripsiPenyakit
+                tvNameDisease.text = penyakit
+                tvSugestion.text = suggesion
+                resultViewModel.isLoading.observe(this@ResultActivity) { isLoading ->
+                    if (isLoading) {
+                        loadingLottie?.visibility = View.VISIBLE
+                        bgLoading?.visibility = View.VISIBLE
+                    } else {
+                        loadingLottie?.visibility = View.INVISIBLE
+                        bgLoading?.visibility = View.INVISIBLE
+                    }
+                }
+            }
 
             val img = receivedData.getString("img")
             Log.d("imageresult", "onCreate: $img")
@@ -77,8 +87,25 @@ class ResultActivity : AppCompatActivity() {
                 }
             }
 
-            resultViewModel.savedPaddy.observe(this) {
-                Toast.makeText(this, "Result : $it", Toast.LENGTH_LONG).show()
+            resultViewModel.isResult.observe(this) { isResult ->
+                resultViewModel.savedPaddy.observe(this) { paddy ->
+                    if (isResult == true) {
+                        val modal = AlertDialog.Builder(this)
+                        modal.setTitle("Successfull ")
+                        modal.setMessage("your data $paddy has been added")
+                        modal.setPositiveButton("Home") { dialog, which ->
+                            startActivity(Intent(this@ResultActivity, SecondActivity::class.java))
+                        }
+                        modal.show()
+                    } else {
+                        val modal = AlertDialog.Builder(this)
+                        modal.setTitle("error")
+                        modal.setMessage("your data $paddy has been added")
+                        modal.setNegativeButton("Close") { dialog, which ->
+                        }
+                        modal.show()
+                    }
+                }
             }
         }
         binding.backBtn.setOnClickListener {

@@ -3,6 +3,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="to_login"><u>Login</u></string>
+    <string name="guide_scan">Untuk mendapatkan akurasi yang baik, disarankan untuk mengambil foto dengan <b>latar belakang kosong</b>. Jika akurasi dibawah <b>80%</b>, ulangi pengambilan foto dari sudut ataupun jarak yang berbeda</string>
     <string name="to_register"><u>Register</u></string>
     <string name="title_activity_text">TextActivity</string>
     <!-- Strings used for fragments for navigation -->

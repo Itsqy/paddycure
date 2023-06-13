@@ -10,9 +10,11 @@ data class PaddyResponse(
     @field:SerializedName("result") val result: Boolean,
 
     @field:SerializedName("keterangan") val keterangan: String,
+
     @field:SerializedName("error") val error: String,
 
     @field:SerializedName("data") val data: ArrayList<DataItemPaddy>
+
 ) : Parcelable
 
 @Parcelize

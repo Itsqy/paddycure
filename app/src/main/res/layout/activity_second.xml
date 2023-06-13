@@ -20,6 +20,7 @@
         app:navGraph="@navigation/sec_nav" />
 
     <ImageView
+        android:id="@+id/btn_to_scan"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginBottom="38dp"

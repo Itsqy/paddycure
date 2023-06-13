@@ -4,8 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.darkcoder.paddycure.data.model.local.SaveResultRequest
-import com.darkcoder.paddycure.data.model.remote.PaddyResponse
+import com.darkcoder.paddycure.data.model.remote.SavedResultResponse
 import com.darkcoder.paddycure.data.network.ApiConfig
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -19,6 +18,12 @@ class ResultViewModel : ViewModel() {
     private val _savedPaddy = MutableLiveData<String>()
     val savedPaddy: LiveData<String> = _savedPaddy
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _isResult = MutableLiveData<Boolean>()
+    val isResult: LiveData<Boolean> = _isResult
+
     fun saveResultData(
         userId: String,
         confidence: String,
@@ -27,16 +32,7 @@ class ResultViewModel : ViewModel() {
         deskripsiPenyakit: String,
         img: MultipartBody.Part
     ) {
-
-        val request = SaveResultRequest(
-            user_id = userId,
-            penyakit = penyakit,
-            confidence = confidence,
-            suggesion = suggesion,
-            deskripsiPenyakit = deskripsiPenyakit,
-
-            )
-
+        _isLoading.value = true
         val userIdRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), userId)
         val penyakitRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), penyakit)
         val confidenceRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), confidence)
@@ -44,35 +40,39 @@ class ResultViewModel : ViewModel() {
         val deskripsiPenyakitRequestBody =
             RequestBody.create("text/plain".toMediaTypeOrNull(), deskripsiPenyakit)
 
-
-        ApiConfig.getServiceNews()
-            .saveResult(
-                userIdRequestBody,
-                penyakitRequestBody,
-                confidenceRequestBody,
-                suggesionRequestBody,
-                deskripsiPenyakitRequestBody,
-                img
-            )
-            .enqueue(object : Callback<PaddyResponse> {
+        ApiConfig.getServiceNews().saveResult(
+            userIdRequestBody,
+            penyakitRequestBody,
+            confidenceRequestBody,
+            suggesionRequestBody,
+            deskripsiPenyakitRequestBody,
+            img
+        )
+            .enqueue(object : Callback<SavedResultResponse> {
                 override fun onResponse(
-                    call: Call<PaddyResponse>,
-                    response: Response<PaddyResponse>
+                    call: Call<SavedResultResponse>,
+                    response: Response<SavedResultResponse>
                 ) {
                     if (response.isSuccessful) {
                         if (response.body()?.result == true) {
-                            _savedPaddy.value = response.body()?.keterangan
+                            _isLoading.value = false
+                            _isResult.value = response?.body()?.result
+                            _savedPaddy.value = response.body()?.data?.penyakit
                         } else {
-                            _savedPaddy.value = response.body()?.error
+                            _isResult.value = response?.body()?.result
+                            _isLoading.value = false
+                            _savedPaddy.value = response.body()?.keterangan
                         }
                     } else {
+                        _isLoading.value = false
                         _savedPaddy.value = response.body()?.error
                     }
                 }
 
-                override fun onFailure(call: Call<PaddyResponse>, t: Throwable) {
+                override fun onFailure(call: Call<SavedResultResponse>, t: Throwable) {
+                    _isLoading.value = false
                     Log.d("TAG", "onFailure: ${t.toString()}")
-                    _savedPaddy.value = "error : $t"
+
                 }
             })
     }
