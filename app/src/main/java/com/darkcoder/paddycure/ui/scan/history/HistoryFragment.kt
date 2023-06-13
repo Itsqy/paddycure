@@ -17,6 +17,7 @@ import com.darkcoder.paddycure.databinding.FragmentScanBinding
 import com.darkcoder.paddycure.ui.auth.dataStore
 import com.darkcoder.paddycure.ui.scan.history.adapter.HistoryAdapter
 import com.darkcoder.paddycure.ui.scan.history.detail.DetailHistoryActivity
+import com.darkcoder.paddycure.ui.scan.preview.PreviewActivity
 import com.darkcoder.paddycure.utils.UserPreferences
 import com.darkcoder.paddycure.utils.ViewModelFactory
 
@@ -43,11 +44,19 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding?.apply {
+            btnScan.setOnClickListener {
+                startActivity(Intent(requireContext(), PreviewActivity::class.java))
+                activity?.finish()
+            }
+        }
+
         setupComposeList()
         loginViewModel.getUser().observe(viewLifecycleOwner) { user ->
             historyViewModel.getPaddy("${user.userId}")
 
         }
+
 
         val historyAdapter = HistoryAdapter { paddy ->
             val intent = Intent(requireContext(), DetailHistoryActivity::class.java)

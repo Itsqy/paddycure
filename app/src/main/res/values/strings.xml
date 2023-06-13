@@ -54,4 +54,15 @@
     <string name="placeholder_search">Search</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_profile_edit">ProfileEditActivity</string>
+    <string name="profile">Profile</string>
+    <string name="about_application">About Application</string>
+    <string name="product_details">Product Details</string>
+    <string name="count_sold">275 Terjual</string>
+    <string name="description">Description</string>
+    <string name="product_recommendations">Product Recommendations</string>
+    <string name="new_password">New Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="full_name">Full Name</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>
