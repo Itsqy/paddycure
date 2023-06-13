@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature
@@ -24,6 +25,7 @@
         android:roundIcon="@drawable/paddycure_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+  
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
@@ -44,6 +46,11 @@
             android:exported="false"
             android:label="@string/title_activity_product_details"
             android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDTnM3PvnqgRD6XFQ9_OYVV6i_r0F_RLZw" />
+
         <activity
             android:name=".ui.product.cart.CartActivity"
             android:exported="false"
@@ -64,7 +71,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.auth.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
