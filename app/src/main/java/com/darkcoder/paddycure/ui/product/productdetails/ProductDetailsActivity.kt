@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.ui.product.productdetails
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,10 +13,12 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
+import com.darkcoder.paddycure.data.model.local.PostOrder
 import com.darkcoder.paddycure.data.model.local.UserModel
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.viewmodel.ProductDetailsViewModel
 import com.darkcoder.paddycure.databinding.ActivityProductDetailsBinding
+import com.darkcoder.paddycure.ui.product.cart.CartActivity
 import com.darkcoder.paddycure.ui.product.shop.ListProductAdapter
 import com.darkcoder.paddycure.utils.UserPreferences
 import com.darkcoder.paddycure.utils.ViewModelFactory
@@ -48,6 +51,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         productDetailsViewModel.getProductDetails(id)
         productDetailsViewModel.detailProduct.observe(this) {
             setProductDetails(it)
+            orderProcess(it)
         }
 
         productDetailsViewModel.isLoading.observe(this) {
@@ -56,6 +60,36 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         binding.ivBack.setOnClickListener {
             super.onBackPressed()
+        }
+    }
+
+    private fun orderProcess(data: DataItem) {
+        var jumlah_pesanan = 1
+        var total_harga = data.hargaProduk
+        var total_harga_pesanan = total_harga
+        var biaya_transaksi = 2000
+
+        binding.apply {
+            ivMin.setOnClickListener {
+                if (jumlah_pesanan > 1) {
+                    jumlah_pesanan--
+                    total_harga = data.hargaProduk * jumlah_pesanan
+                    tvCount.text = jumlah_pesanan.toString()
+                    tvCost.text = "Rp. ${total_harga}"
+                }
+            }
+            ivPlus.setOnClickListener {
+                jumlah_pesanan++
+                total_harga = data.hargaProduk * jumlah_pesanan
+                tvCount.text = jumlah_pesanan.toString()
+                tvCost.text = "Rp. ${total_harga}"
+            }
+            btnAddToCart.setOnClickListener {
+
+                productDetailsViewModel.postOrder(PostOrder(jumlah_pesanan.toString(), total_harga.toString(), total_harga_pesanan.toString(), biaya_transaksi.toString(), data.id))
+                val intent = Intent(this@ProductDetailsActivity, CartActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 

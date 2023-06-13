@@ -66,4 +66,8 @@
     <string name="full_name">Full Name</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="similar_products">Similar Products</string>
+    <string name="your_cart">Your Cart</string>
+    <string name="shipping_total">Shipping Total</string>
+    <string name="platform_fee">Platform Fee</string>
+    <string name="payment_total">Payment Total</string>
 </resources>
