@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.data.network
 
+import com.darkcoder.paddycure.data.model.local.SaveResultRequest
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
@@ -58,11 +59,26 @@ interface ApiService {
         @Path("user_id") userId: String
     ): Call<PaddyResponse>
 
+
+//    @Headers("Content-Type: application/json")
+    @Multipart
+    @POST("paddy/create")
+    fun saveResult(
+    @Part("user_id") userId: RequestBody,
+    @Part("penyakit") penyakit: RequestBody,
+    @Part("confidence") confidence: RequestBody,
+    @Part("suggesion") suggesion: RequestBody,
+    @Part("deskripsiPenyakit") deskripsiPenyakit: RequestBody,
+    @Part img_padi: MultipartBody.Part
+    ): Call<PaddyResponse>
+
+
   
    @GET("produk")
     fun getProduct() : Call<ProductResponse>
 
    @GET("produk/search/id/{id}")
    fun getProductDetails(@Path("id") id: String) : Call<ProductResponse>
+
 
 }

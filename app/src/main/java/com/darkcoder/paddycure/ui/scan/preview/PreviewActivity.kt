@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -23,6 +24,7 @@ import com.darkcoder.paddycure.data.viewmodel.ScanViewModel
 import com.darkcoder.paddycure.databinding.ActivityPreviewBinding
 import com.darkcoder.paddycure.ui.scan.camera.CameraActivity
 import com.darkcoder.paddycure.ui.scan.result.ResultActivity
+import com.darkcoder.paddycure.utils.Utils
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -117,7 +119,7 @@ class PreviewActivity : AppCompatActivity() {
 
     private fun uploadImage() {
         if (getFile != null) {
-            val file = reduceFileImage(getFile as File)
+            val file = Utils().reduceFileImage(getFile as File)
             val requestImageFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
             val imageMulti: MultipartBody.Part =
                 MultipartBody.Part.createFormData("file", file.name, requestImageFile)
@@ -133,7 +135,8 @@ class PreviewActivity : AppCompatActivity() {
                         bundle.putString("deskripsiPenyakit", result.deskripsiPenyakit)
                         bundle.putString("penyakit", result.penyakit)
                         bundle.putString("suggesion", result.suggesion)
-                        bundle.putString("img", file.toString())
+                        bundle.putString("img", getFile.toString())
+                        Log.d("imgFile", "uploadImage: $file")
                         intent.putExtras(bundle)
                         startActivity(intent)
                         finish()
@@ -166,21 +169,7 @@ class PreviewActivity : AppCompatActivity() {
         launcherIntentGallery.launch(chooser)
     }
 
-    fun reduceFileImage(file: File): File {
-        val bitmap = BitmapFactory.decodeFile(file.path)
-        var compressQuality = 100
-        var streamLength: Int
-        do {
-            val bmpStream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
-            val bmpPicByteArray = bmpStream.toByteArray()
-            streamLength = bmpPicByteArray.size
-            compressQuality -= 5
-        } while (streamLength > 1000000)
-        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
 
-        return file
-    }
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
