@@ -67,16 +67,19 @@ class HomeFragment : Fragment() {
         val list: ArrayList<Hero> = arrayListOf()
         list.addAll(HeroesData.heroes)
         homeViewModel.setNews()
+        homeViewModel.setRecentNews()
         homeViewModel.getNews().observe(requireActivity()) { news ->
+            composeViewSetUp(news)
+        }
+        homeViewModel.getRecentNews().observe(requireActivity()) { recentNews ->
             val newsAdapter = NewsAdapter()
             binding?.rvRecentNews?.apply {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = newsAdapter
-                newsAdapter.submitList(news)
-
+                newsAdapter.submitList(recentNews)
             }
-            composeViewSetUp(news)
+
         }
 
         binding?.apply {

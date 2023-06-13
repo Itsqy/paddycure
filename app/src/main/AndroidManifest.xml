@@ -59,7 +59,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.scan.camera.CameraActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.SecondActivity"
             android:configChanges="orientation|screenSize"

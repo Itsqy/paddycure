@@ -95,18 +95,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/loading_lottie"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/loading_paddycure" />
 
         <com.darkcoder.paddycure.ui.customview.MyEditTextEmail
             android:id="@+id/edt_email_login"
@@ -191,6 +179,20 @@
             app:layout_constraintStart_toEndOf="@id/tv_donthaveacc"
             app:layout_constraintTop_toTopOf="@id/tv_donthaveacc" />
 
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading_lottie"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_paddycure" />
+
         <ImageView
             android:id="@+id/bg_loading"
             android:layout_width="match_parent"
@@ -202,6 +204,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -9,6 +9,7 @@ import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.model.remote.PaddyResponse
 import com.darkcoder.paddycure.data.model.remote.PostOrderResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
+import com.darkcoder.paddycure.data.model.remote.SavedResultResponse
 import com.darkcoder.paddycure.data.model.remote.ScanResponse
 import com.darkcoder.paddycure.data.model.remote.WeatherResponse
 import okhttp3.MultipartBody
@@ -35,13 +36,16 @@ interface ApiService {
     @GET("/berita")
     fun getNews(): Call<BeritaResponse>
 
+    @GET("/berita/search/timeStamp/desc")
+    fun getRecentNews(): Call<BeritaResponse>
+
     //    @Headers("Content-Type: application/json")
     @Multipart
     @POST("/users/register")
     fun register(
-        @Part("nama") nama: String,
-        @Part("username") username: String,
-        @Part("password") password: String,
+        @Part("nama") nama: RequestBody,
+        @Part("username") username: RequestBody,
+        @Part("password") password: RequestBody,
     ): Call<RegisterResponse>
 
 
@@ -61,6 +65,19 @@ interface ApiService {
         @Path("user_id") userId: String
     ): Call<PaddyResponse>
 
+
+    @Multipart
+    @POST("paddy/create")
+    fun saveResult(
+        @Part("user_id") userId: RequestBody,
+        @Part("penyakit") penyakit: RequestBody,
+        @Part("confidence") confidence: RequestBody,
+        @Part("suggesion") suggesion: RequestBody,
+        @Part("deskripsiPenyakit") deskripsiPenyakit: RequestBody,
+        @Part img_padi: MultipartBody.Part
+    ): Call<SavedResultResponse>
+
+
   
    @GET("produk")
     fun getProduct() : Call<ProductResponse>
@@ -68,6 +85,7 @@ interface ApiService {
    @GET("produk/search/id/{id}")
    fun getProductDetails(@Path("id") id: String) : Call<ProductResponse>
 
+  
    @GET("order/user/{user_id}")
    fun getOrder(@Path("user_id") userId: String) : Call<OrderResponse>
 

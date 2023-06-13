@@ -12,9 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.darkcoder.paddycure.data.viewmodel.HistoryViewModel
+import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.databinding.FragmentScanBinding
+import com.darkcoder.paddycure.ui.auth.dataStore
 import com.darkcoder.paddycure.ui.scan.history.adapter.HistoryAdapter
 import com.darkcoder.paddycure.ui.scan.history.detail.DetailHistoryActivity
+import com.darkcoder.paddycure.utils.UserPreferences
+import com.darkcoder.paddycure.utils.ViewModelFactory
 
 
 class HistoryFragment : Fragment() {
@@ -22,6 +26,10 @@ class HistoryFragment : Fragment() {
     private var _binding: FragmentScanBinding? = null
     private val binding get() = _binding
     private val historyViewModel: HistoryViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels {
+        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore))
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +44,10 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupComposeList()
-        historyViewModel.getPaddy("1")
+        loginViewModel.getUser().observe(viewLifecycleOwner) { user ->
+            historyViewModel.getPaddy("${user.userId}")
+
+        }
 
         val historyAdapter = HistoryAdapter { paddy ->
             val intent = Intent(requireContext(), DetailHistoryActivity::class.java)

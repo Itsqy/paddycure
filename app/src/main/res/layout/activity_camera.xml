@@ -21,6 +21,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_lottie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/scan_mattrix_lottie" />
+
+    <LinearLayout
+        android:id="@+id/modal_guide_scan"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cardview_login"
+        android:gravity="end"
+        android:paddingHorizontal="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_guide_scan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cardview_login"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="10dp"
+            android:text="@string/guide_scan"
+            android:textAlignment="center"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_ok_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_button"
+            android:text="OK" />
+
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/btn_capture_cam"
