@@ -1,14 +1,18 @@
 package com.darkcoder.paddycure.ui.product.shop
 
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.model.remote.DataItem
+import com.darkcoder.paddycure.ui.product.productdetails.ProductDetailsActivity
 
 class ListProductAdapter(private val listProduct: List<DataItem>) : RecyclerView.Adapter<ListProductAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,6 +33,14 @@ class ListProductAdapter(private val listProduct: List<DataItem>) : RecyclerView
             .into(holder.ivPhoto)
         holder.tvTitle.text = item.namaProduk
         holder.tvCost.text = item.hargaProduk.toString()
+
+        holder.itemView.setOnClickListener {
+            Log.e("ID:", item.id)
+            val intent = Intent(holder.itemView.context, ProductDetailsActivity::class.java)
+            intent.putExtra("id", item.id)
+
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
 }
