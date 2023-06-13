@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.darkcoder.paddycure.R
+import com.darkcoder.paddycure.data.network.ApiConfig
 import com.darkcoder.paddycure.data.viewmodel.SplashViewModel
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.utils.UserPreferences
@@ -19,7 +20,7 @@ class SplashFragment : Fragment() {
 
 
     private val splashViewModel: SplashViewModel by viewModels {
-        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore))
+        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore), ApiConfig)
     }
 
     override fun onCreateView(
@@ -34,6 +35,7 @@ class SplashFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         splashViewModel.getUser().observe(viewLifecycleOwner) {
             if (it.isLogin) {
+                splashViewModel.setUserToken(it.userToken)
                 Thread(Runnable {
                     try {
                         Thread.sleep(300)

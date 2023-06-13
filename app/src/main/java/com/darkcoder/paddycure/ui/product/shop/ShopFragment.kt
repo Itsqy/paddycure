@@ -1,5 +1,6 @@
 package com.darkcoder.paddycure.ui.product.shop
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -18,6 +19,7 @@ import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.data.viewmodel.ShopViewModel
 import com.darkcoder.paddycure.databinding.FragmentShopBinding
+import com.darkcoder.paddycure.ui.product.cart.CartActivity
 import java.lang.Math.abs
 
 class ShopFragment : Fragment() {
@@ -54,6 +56,15 @@ class ShopFragment : Fragment() {
             binding.rvProduct.adapter = adapter
         }
 
+        shopViewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
+
+        binding.containerToCart.setOnClickListener {
+            val intent = Intent(requireActivity(), CartActivity::class.java)
+            startActivity(intent)
+        }
+
         /** Slider ViewPager2
         init()
         setUpTransformer()
@@ -64,6 +75,10 @@ class ShopFragment : Fragment() {
                 handler.postDelayed(runnable, 2000)
             }
         }) **/
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     /** Slider ViewPager2
