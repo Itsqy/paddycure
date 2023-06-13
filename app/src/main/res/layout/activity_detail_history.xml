@@ -222,7 +222,7 @@
             android:layout_marginTop="34dp"
             android:background="@drawable/bg_button"
             android:fontFamily="@font/poppins_medium"
-            android:text="save result"
+            android:text="Back to Home"
             android:textColor="@color/white"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"

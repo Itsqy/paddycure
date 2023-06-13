@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -37,6 +38,11 @@ class CameraActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.apply {
+
+            btnOkClose.setOnClickListener {
+                modalGuideScan.visibility = View.GONE
+            }
+
             btnCaptureCam.setOnClickListener { takePhoto() }
             btnExit.setOnClickListener { finish() }
             btnSwitchCam.setOnClickListener { switchCamera() }

@@ -1,234 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.scan.result.ResultActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_lottie"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:elevation="15dp"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading_paddycure" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="209dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/bg_result"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:padding="22dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/back_btn"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:src="@drawable/back_button_white" />
+                android:layout_width="match_parent"
+                android:layout_height="209dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_result"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="22dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Result"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/back_btn"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/back_button_white" />
 
-        <ImageView
-            android:id="@+id/cardview_result"
-            android:layout_width="310dp"
-            android:layout_height="128dp"
-            android:layout_marginTop="40dp"
-            android:elevation="3dp"
+            </LinearLayout>
 
-            android:src="@drawable/cardview_login"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Result"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ic_activity"
-            android:layout_width="57dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="31dp"
-            android:elevation="3dp"
-            android:src="@drawable/ic_result_activity"
-            app:layout_constraintBottom_toBottomOf="@id/cardview_result"
-            app:layout_constraintStart_toStartOf="@id/cardview_result"
-            app:layout_constraintTop_toTopOf="@id/cardview_result" />
+            <ImageView
+                android:id="@+id/cardview_result"
+                android:layout_width="310dp"
+                android:layout_height="128dp"
+                android:layout_marginTop="40dp"
+                android:elevation="3dp"
 
-        <TextView
-            android:id="@+id/tv_percentage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
-            android:layout_marginTop="15dp"
-            android:elevation="3dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="75"
-            android:textColor="@color/primaryColor"
-            android:textSize="36sp"
-            app:layout_constraintStart_toEndOf="@id/ic_activity"
-            app:layout_constraintTop_toTopOf="@id/cardview_result" />
+                android:src="@drawable/cardview_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-        <TextView
-            android:id="@+id/percent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ic_activity"
+                android:layout_width="57dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="31dp"
+                android:elevation="3dp"
+                android:src="@drawable/ic_result_activity"
+                app:layout_constraintBottom_toBottomOf="@id/cardview_result"
+                app:layout_constraintStart_toStartOf="@id/cardview_result"
+                app:layout_constraintTop_toTopOf="@id/cardview_result" />
 
-            android:elevation="3dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="%"
-            android:textColor="@color/primaryColor"
-            android:textSize="36sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_percentage"
-            app:layout_constraintStart_toEndOf="@id/tv_percentage"
-            app:layout_constraintTop_toTopOf="@id/tv_percentage" />
+            <TextView
+                android:id="@+id/tv_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="15dp"
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="75"
+                android:textColor="@color/primaryColor"
+                android:textSize="36sp"
+                app:layout_constraintStart_toEndOf="@id/ic_activity"
+                app:layout_constraintTop_toTopOf="@id/cardview_result" />
 
-        <TextView
-            android:id="@+id/tv_label_disease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:fontFamily="@font/poppins_reguler"
-            android:text="indicated"
-            android:textColor="@color/greyColor"
-            android:textSize="10dp"
-            app:layout_constraintStart_toStartOf="@id/tv_percentage"
-            app:layout_constraintTop_toBottomOf="@id/tv_percentage" />
+            <TextView
+                android:id="@+id/percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <TextView
-            android:id="@+id/tv_name_disease"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="3dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Bacterial Leaf Blight"
-            android:textColor="@color/primaryColor"
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@id/tv_label_disease"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_disease" />
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="%"
+                android:textColor="@color/primaryColor"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_percentage"
+                app:layout_constraintStart_toEndOf="@id/tv_percentage"
+                app:layout_constraintTop_toTopOf="@id/tv_percentage" />
 
-        <TextView
-            android:id="@+id/tv_label_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="About The Disease"
-            android:textColor="@color/primaryColor"
-            app:layout_constraintStart_toStartOf="@id/cardview_result"
-            app:layout_constraintTop_toBottomOf="@id/cardview_result" />
+            <TextView
+                android:id="@+id/tv_label_disease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_reguler"
+                android:text="indicated"
+                android:textColor="@color/greyColor"
+                android:textSize="10dp"
+                app:layout_constraintStart_toStartOf="@id/tv_percentage"
+                app:layout_constraintTop_toBottomOf="@id/tv_percentage" />
 
-        <TextView
-            android:id="@+id/tv_about_disease"
-            android:layout_width="310dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/cardview_login"
-            android:elevation="3dp"
-            android:fontFamily="@font/poppins_reguler"
-            android:padding="24dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. "
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@id/tv_label_about"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_about" />
+            <TextView
+                android:id="@+id/tv_name_disease"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Bacterial Leaf Blight"
+                android:textColor="@color/primaryColor"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/tv_label_disease"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_disease" />
 
-        <TextView
-            android:id="@+id/tv_label_disease_pict"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Disease Pictures"
-            android:textColor="@color/primaryColor"
-            app:layout_constraintStart_toStartOf="@id/tv_about_disease"
-            app:layout_constraintTop_toBottomOf="@id/tv_about_disease" />
+            <TextView
+                android:id="@+id/tv_label_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="About The Disease"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintStart_toStartOf="@id/cardview_result"
+                app:layout_constraintTop_toBottomOf="@id/cardview_result" />
 
-        <ImageView
-            android:id="@+id/iv_disease_pict"
-            android:layout_width="310dp"
-            android:layout_height="194dp"
-            android:background="@drawable/cardview_login"
-            android:elevation="3dp"
-            android:padding="16dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/paddy_ex"
-            app:layout_constraintStart_toStartOf="@id/tv_label_disease_pict"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_disease_pict" />
+            <TextView
+                android:id="@+id/tv_about_disease"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/cardview_login"
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_reguler"
+                android:padding="24dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. "
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/tv_label_about"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_about" />
 
-        <TextView
-            android:id="@+id/tv_label_sugestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Sugestion for you"
-            android:textColor="@color/primaryColor"
-            app:layout_constraintStart_toStartOf="@id/iv_disease_pict"
-            app:layout_constraintTop_toBottomOf="@id/iv_disease_pict" />
+            <TextView
+                android:id="@+id/tv_label_disease_pict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Disease Pictures"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintStart_toStartOf="@id/tv_about_disease"
+                app:layout_constraintTop_toBottomOf="@id/tv_about_disease" />
 
-        <TextView
-            android:id="@+id/tv_sugestion"
-            android:layout_width="310dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
-            android:background="@drawable/cardview_login"
-            android:elevation="3dp"
-            android:fontFamily="@font/poppins_reguler"
-            android:padding="24dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. "
-            android:textSize="13sp"
-            app:layout_constraintStart_toStartOf="@id/tv_label_sugestion"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_sugestion" />
+            <ImageView
+                android:id="@+id/iv_disease_pict"
+                android:layout_width="310dp"
+                android:layout_height="194dp"
+                android:background="@drawable/cardview_login"
+                android:elevation="3dp"
+                android:padding="16dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/paddy_ex"
+                app:layout_constraintStart_toStartOf="@id/tv_label_disease_pict"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_disease_pict" />
 
-        <TextView
-            android:id="@+id/tv_label_product_rec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Product Recomendation"
-            android:textColor="@color/primaryColor"
-            app:layout_constraintStart_toStartOf="@id/tv_sugestion"
-            app:layout_constraintTop_toBottomOf="@id/tv_sugestion" />
+            <TextView
+                android:id="@+id/tv_label_sugestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Sugestion for you"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintStart_toStartOf="@id/iv_disease_pict"
+                app:layout_constraintTop_toBottomOf="@id/iv_disease_pict" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recomendation_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/tv_label_product_rec"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_product_rec" />
+            <TextView
+                android:id="@+id/tv_sugestion"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/cardview_login"
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_reguler"
+                android:padding="24dp"
+                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. "
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/tv_label_sugestion"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_sugestion" />
 
-        <Button
-            android:id="@+id/btn_save_result"
-            android:layout_width="318dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="34dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_button"
-            android:fontFamily="@font/poppins_medium"
-            android:text="save result"
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_recomendation_product" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <TextView
+                android:id="@+id/tv_label_product_rec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Product Recomendation"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintStart_toStartOf="@id/tv_sugestion"
+                app:layout_constraintTop_toBottomOf="@id/tv_sugestion" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_recomendation_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/tv_label_product_rec"
+                app:layout_constraintTop_toBottomOf="@id/tv_label_product_rec" />
+
+            <Button
+                android:id="@+id/btn_save_result"
+                android:layout_width="318dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/poppins_medium"
+                android:text="save result"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_recomendation_product" />
+
+
+            <ImageView
+                android:id="@+id/bg_loading"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:alpha="0.5"
+                android:elevation="30dp"
+                android:src="@drawable/loading_bg"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</RelativeLayout>
