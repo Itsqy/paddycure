@@ -202,21 +202,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-        <HorizontalScrollView
-            android:id="@+id/sv_product_recommendations"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product_recommendations"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_product_recomendation">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_product_recommendations"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </HorizontalScrollView>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_product_recomendation" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -231,7 +224,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sv_product_recommendations">
+            app:layout_constraintTop_toBottomOf="@+id/rv_product_recommendations">
 
             <TextView
                 android:id="@+id/textView2"

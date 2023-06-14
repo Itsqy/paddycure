@@ -23,6 +23,7 @@ class ShopViewModel : ViewModel() {
                 response: Response<ProductResponse>
             ) {
                 if (response.isSuccessful) {
+
                     _listProduct.value = response.body()?.data
                     Log.d("products", "onViewCreated: ${response.body()}")
                 } else {

@@ -3,6 +3,7 @@ package com.darkcoder.paddycure.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.darkcoder.paddycure.R
@@ -27,6 +28,7 @@ class SecondActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         setButtomNavWithConfigChanges()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
         binding.btnToScan?.setOnClickListener {

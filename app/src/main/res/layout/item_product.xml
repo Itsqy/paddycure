@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
-    android:layout_width="match_parent"
+    android:layout_width="133dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginTop="4dp"
@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/img_item_photo"
-            android:layout_width="0dp"
+            android:layout_width="122dp"
             android:layout_height="127dp"
             android:scaleType="centerCrop"
             card_view:layout_constraintEnd_toEndOf="parent"
