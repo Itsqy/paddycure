@@ -15,7 +15,7 @@ class ProductDetailsViewModel: ViewModel(){
     private val _listProduct = MutableLiveData<List<DataItem>>()
     val listProduct: LiveData<List<DataItem>> = _listProduct
 
-    fun getProductDetails() {
+    fun getProductercomendation() {
         val client = ApiConfig.getServiceNews().getProduct()
         client.enqueue(object : Callback<ProductResponse> {
             override fun onResponse(

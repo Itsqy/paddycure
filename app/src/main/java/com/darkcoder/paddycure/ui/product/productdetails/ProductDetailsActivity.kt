@@ -26,7 +26,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        productDetailsViewModel.getProductDetails()
+        productDetailsViewModel.getProductercomendation()
         productDetailsViewModel.listProduct.observe(this) {
             val adapter = ListProductAdapter(it)
             binding.rvProductRecommendations.adapter = adapter

@@ -43,7 +43,7 @@ class ResultActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
-        productDetailsViewModel.getProductDetails()
+        productDetailsViewModel.getProductercomendation()
         val receivedData: Bundle? = intent.extras
         if (receivedData != null) {
             val confidence = receivedData.getString("confidence")?.replace("\"", "")
