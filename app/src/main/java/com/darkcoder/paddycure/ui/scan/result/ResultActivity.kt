@@ -7,13 +7,17 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
+import com.darkcoder.paddycure.data.viewmodel.ProductDetailsViewModel
 import com.darkcoder.paddycure.data.viewmodel.ResultViewModel
 import com.darkcoder.paddycure.databinding.ActivityResultBinding
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.auth.dataStore
+import com.darkcoder.paddycure.ui.scan.result.listadapter.ProductsAdapter
 import com.darkcoder.paddycure.utils.UserPreferences
 import com.darkcoder.paddycure.utils.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -30,12 +34,16 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private val resultViewModel: ResultViewModel by viewModels()
+    private val productDetailsViewModel: ProductDetailsViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityResultBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
+
+        productDetailsViewModel.getProductDetails()
         val receivedData: Bundle? = intent.extras
         if (receivedData != null) {
             val confidence = receivedData.getString("confidence")?.replace("\"", "")
@@ -56,6 +64,9 @@ class ResultActivity : AppCompatActivity() {
                         loadingLottie?.visibility = View.INVISIBLE
                         bgLoading?.visibility = View.INVISIBLE
                     }
+                }
+                backBtn.setOnClickListener {
+                    finish()
                 }
             }
 
@@ -86,33 +97,51 @@ class ResultActivity : AppCompatActivity() {
 
                 }
             }
+            productRecomendation()
+            alertDialogSetup()
 
-            resultViewModel.isResult.observe(this) { isResult ->
-                resultViewModel.savedPaddy.observe(this) { paddy ->
-                    if (isResult == true) {
-                        val modal = AlertDialog.Builder(this)
-                        modal.setTitle("Successfull ")
-                        modal.setMessage("your data $paddy has been added")
-                        modal.setPositiveButton("Home") { dialog, which ->
-                            startActivity(Intent(this@ResultActivity, SecondActivity::class.java))
-                        }
-                        modal.show()
-                    } else {
-                        val modal = AlertDialog.Builder(this)
-                        modal.setTitle("error")
-                        modal.setMessage("your data $paddy has been added")
-                        modal.setNegativeButton("Close") { dialog, which ->
-                        }
-                        modal.show()
+        }
+
+
+
+    }
+
+    private fun alertDialogSetup() {
+        resultViewModel.isResult.observe(this) { isResult ->
+            resultViewModel.savedPaddy.observe(this) { paddy ->
+                if (isResult == true) {
+                    val modal = AlertDialog.Builder(this)
+                    modal.setTitle("Successfull ")
+                    modal.setMessage("your data $paddy has been added")
+                    modal.setPositiveButton("Home") { dialog, which ->
+                        startActivity(Intent(this@ResultActivity, SecondActivity::class.java))
                     }
+                    modal.show()
+                } else {
+                    val modal = AlertDialog.Builder(this)
+                    modal.setTitle("error")
+                    modal.setMessage("your data $paddy has been added")
+                    modal.setNegativeButton("Close") { dialog, which ->
+                    }
+                    modal.show()
                 }
             }
         }
-        binding.backBtn.setOnClickListener {
-            finish()
+    }
+
+    private fun productRecomendation() {
+        productDetailsViewModel.listProduct.observe(this@ResultActivity) {
+            val adapterProd = ProductsAdapter()
+            adapterProd.submitList(it)
+            binding?.apply {
+                rvRecomendationProduct?.apply {
+                    layoutManager =
+                        LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    setHasFixedSize(true)
+                    adapter = adapterProd
+                }
+            }
         }
-
-
     }
 
 

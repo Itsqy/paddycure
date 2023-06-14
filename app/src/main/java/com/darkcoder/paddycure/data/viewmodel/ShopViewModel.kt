@@ -29,6 +29,7 @@ class ShopViewModel : ViewModel() {
             ) {
                 _isLoading.value = false
                 if (response.isSuccessful) {
+
                     _listProduct.value = response.body()?.data
                 } else {
                     Log.e("null", "onViewCreated: ${response.body()}")

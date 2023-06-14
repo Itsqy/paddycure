@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.darkcoder.paddycure.data.viewmodel.ScanViewModel
@@ -85,11 +86,13 @@ class PreviewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         permissionCamera()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         binding.apply {
             scanViewModel.isLoading.observe(this@PreviewActivity) { isLoading ->
                 if (isLoading) {
                     loadingLottie?.visibility = View.VISIBLE
+                    bgLoading.bringToFront()
                     bgLoading.visibility = View.VISIBLE
                 } else {
                     loadingLottie?.visibility = View.INVISIBLE

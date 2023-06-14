@@ -21,11 +21,36 @@ class ProductDetailsViewModel() : ViewModel(){
     private val _listProduct = MutableLiveData<List<DataItem>>()
     val listProduct: LiveData<List<DataItem>> = _listProduct
 
+
+    fun getProductDetails() {
+        val client = ApiConfig.getServiceNews().getProduct()
+
     private val _detailProduct = MutableLiveData<DataItem>()
     val detailProduct: LiveData<DataItem> = _detailProduct
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+      
+      fun getProductercomendation() {
+        val client = ApiConfig.getServiceNews().getProduct()
+        client.enqueue(object : Callback<ProductResponse> {
+            override fun onResponse(
+                call: Call<ProductResponse>,
+                response: Response<ProductResponse>
+            ) {
+                if (response.isSuccessful) {
+                    _listProduct.value = response.body()?.data
+                    Log.d("products", "onViewCreated: ${response.body()}")
+                } else {
+                    Log.d("null", "onViewCreated: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                Log.d("errorProduct", "onFailure: ${t.message}")
+            }
+        })
+    }
 
     fun getProductDetails(id: String) {
         _isLoading.value = true

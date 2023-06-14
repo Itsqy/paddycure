@@ -23,8 +23,6 @@ import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
-import com.darkcoder.paddycure.dummies.Hero
-import com.darkcoder.paddycure.dummies.HeroesData
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
@@ -63,9 +61,7 @@ class HomeFragment : Fragment() {
         getMyLastLocation()
         setGoodMorning()
 
-        // get data berita
-        val list: ArrayList<Hero> = arrayListOf()
-        list.addAll(HeroesData.heroes)
+
         homeViewModel.setNews()
         homeViewModel.setRecentNews()
         homeViewModel.getNews().observe(requireActivity()) { news ->
