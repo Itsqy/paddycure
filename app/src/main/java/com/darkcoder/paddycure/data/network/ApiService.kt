@@ -1,10 +1,14 @@
 package com.darkcoder.paddycure.data.network
 
+
+import com.darkcoder.paddycure.data.model.local.PostOrder
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
+import com.darkcoder.paddycure.data.model.remote.OrderResponse
 import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.model.remote.PaddyResponse
+import com.darkcoder.paddycure.data.model.remote.PostOrderResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
 import com.darkcoder.paddycure.data.model.remote.SavedResultResponse
 import com.darkcoder.paddycure.data.model.remote.ScanResponse
@@ -62,6 +66,7 @@ interface ApiService {
         @Path("user_id") userId: String
     ): Call<PaddyResponse>
 
+
     @Multipart
     @POST("paddy/create")
     fun saveResult(
@@ -78,8 +83,16 @@ interface ApiService {
    @GET("produk")
     fun getProduct() : Call<ProductResponse>
 
-   @GET("produk/id/{id}")
-   fun getProductDetails(@Path("id") id: String) : Call<List<DataItem>>
+   @GET("produk/search/id/{id}")
+   fun getProductDetails(@Path("id") id: String) : Call<ProductResponse>
 
+  
+   @GET("order/user/{user_id}")
+   fun getOrder(@Path("user_id") userId: String) : Call<OrderResponse>
+
+   @POST("order/input")
+   fun postOrder(
+       @Body requestBody: PostOrder
+   ) : Call<PostOrderResponse>
 
 }
