@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.data.model.local.PostOrder
+import com.darkcoder.paddycure.data.model.local.PostPesanan
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.viewmodel.ProductDetailsViewModel
 import com.darkcoder.paddycure.databinding.ActivityProductDetailsBinding
@@ -82,13 +83,21 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             btnAddToCart.setOnClickListener {
 
-                productDetailsViewModel.postOrder(
-                    PostOrder(
+//                productDetailsViewModel.postOrder(
+//                    PostOrder(
+//                        jumlah_pesanan.toString(),
+//                        total_harga.toString(),
+//                        total_harga_pesanan.toString(),
+//                        biaya_transaksi.toString(),
+//                        data.id
+//                    )
+//                )
+                productDetailsViewModel.postPesanan(
+                    PostPesanan(
+                        data.id,
                         jumlah_pesanan.toString(),
-                        total_harga.toString(),
-                        total_harga_pesanan.toString(),
-                        biaya_transaksi.toString(),
-                        data.id
+                        data.hargaProduk,
+                        data.id //id_pesanan
                     )
                 )
                 val intent = Intent(this@ProductDetailsActivity, CartActivity::class.java)

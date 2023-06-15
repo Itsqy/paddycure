@@ -2,11 +2,16 @@ package com.darkcoder.paddycure.data.network
 
 
 import com.darkcoder.paddycure.data.model.local.PostOrder
+import com.darkcoder.paddycure.data.model.local.PostPesanan
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
+import com.darkcoder.paddycure.data.model.remote.DeletePesananResponse
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
 import com.darkcoder.paddycure.data.model.remote.OrderResponse
 import com.darkcoder.paddycure.data.model.remote.PaddyResponse
+import com.darkcoder.paddycure.data.model.remote.PesananResponse
 import com.darkcoder.paddycure.data.model.remote.PostOrderResponse
+import com.darkcoder.paddycure.data.model.remote.PostPesananResponse
+import com.darkcoder.paddycure.data.model.remote.ProductByNameResponse
 import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
 import com.darkcoder.paddycure.data.model.remote.SavedResultResponse
@@ -16,6 +21,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -94,6 +100,9 @@ interface ApiService {
     @GET("produk/search/id/{id}")
     fun getProductDetails(@Path("id") id: String): Call<ProductResponse>
 
+    @GET("produk/search/nama_produk/{nama_produk}")
+    fun getProductByName(@Path("nama_produk") nama_produk: String): Call<ProductByNameResponse>
+
 
     @GET("order/user/{user_id}")
     fun getOrder(@Path("user_id") userId: String): Call<OrderResponse>
@@ -103,4 +112,15 @@ interface ApiService {
         @Body requestBody: PostOrder
     ): Call<PostOrderResponse>
 
+
+    @GET("pesanan/idUser/{id}")
+    fun getPesanan(@Path("id") id: String): Call<PesananResponse>
+
+    @POST("pesanan/input")
+    fun postPesanan(
+        @Body requestBody: PostPesanan
+    ): Call<PostPesananResponse>
+
+    @DELETE("pesanan/batal/{id}")
+    fun deletePesanan(@Path("id") id: String): Call<DeletePesananResponse>
 }
