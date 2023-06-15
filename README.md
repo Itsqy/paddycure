@@ -8,11 +8,13 @@ PaddyCure is a mobile app designed to simplify the process of caring for paddy c
 
 ## Screens 
 
-| Home Screen | Result Screen | Shop Screen | Detail Screen | Chart Screen | History Screen |
-|---|---|---|---|---|---|
-| ![Home Screen](https://drive.google.com/uc?id=1rN6UfZ2LwnORMVa33CsHYqiHnap2Tj3X) | ![Result Screen](https://drive.google.com/uc?id=1kpUl6WqAGc_dKOB6EMkMSps7H0b0wwjL) | ![Shop Screen](https://drive.google.com/uc?id=1BJsgUQ2cf9Jkpj8DaWY10dT6gM20Cgt9) | ![Detail Screen](https://drive.google.com/uc?id=1IaG1Cj0TBtQ0UsauVG2NeMINzvhR0Ut2) | ![Chart Screen](https://drive.google.com/uc?id=1zFqrfP5K7GDu-9ikeOLOTsSHds2PYOQi) | ![History Screen](https://drive.google.com/uc?id=1S4uinIywXQ5FkXkSh-Wkh6Bj2AL95rzs) |
+| Home Screen | Result Screen | Shop Screen | Detail Screen |
+|---|---|---|---|
+| ![Home Screen](https://drive.google.com/uc?id=1rN6UfZ2LwnORMVa33CsHYqiHnap2Tj3X) | ![Result Screen](https://drive.google.com/uc?id=1kpUl6WqAGc_dKOB6EMkMSps7H0b0wwjL) | ![Shop Screen](https://drive.google.com/uc?id=1BJsgUQ2cf9Jkpj8DaWY10dT6gM20Cgt9) | ![Detail Screen](https://drive.google.com/uc?id=1IaG1Cj0TBtQ0UsauVG2NeMINzvhR0Ut2) |
 
-![Camera Screen](https://drive.google.com/uc?id=1fYKjBCfVQD_r5plfA4JbnlIq_oqVa8Wd)
+| Chart Screen | History Screen | Camera Screen |
+|---|---|---|
+| ![Chart Screen](https://drive.google.com/uc?id=1zFqrfP5K7GDu-9ikeOLOTsSHds2PYOQi) | ![History Screen](https://drive.google.com/uc?id=1S4uinIywXQ5FkXkSh-Wkh6Bj2AL95rzs) | ![Camera Screen](https://drive.google.com/uc?id=1fYKjBCfVQD_r5plfA4JbnlIq_oqVa8Wd) |
 
 ## Features
 
