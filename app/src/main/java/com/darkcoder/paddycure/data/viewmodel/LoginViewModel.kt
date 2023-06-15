@@ -44,7 +44,7 @@ class LoginViewModel(val sharedPref: UserPreferences, private val apiConfig: Api
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
 
                 val result = response.body()?.result
-                val ket = response.body()?.keterangan
+//                val ket = response.body()?.keterangan
                 val user = response.body()?.user
                 val body = response.body()
 
@@ -72,7 +72,7 @@ class LoginViewModel(val sharedPref: UserPreferences, private val apiConfig: Api
                     } else {
                         _isLoading.value = false
                         _result.value = response.body()?.result
-                        _message.value = ket.toString()
+//                        _message.value = ket.toString()
                         Log.d("loginDataNull", "onResponse: ${result.toString()}")
                     }
 

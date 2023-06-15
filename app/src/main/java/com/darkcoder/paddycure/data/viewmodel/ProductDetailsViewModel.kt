@@ -4,11 +4,16 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import com.darkcoder.paddycure.data.model.local.PostOrder
+import com.darkcoder.paddycure.data.model.local.PostPesanan
+import com.darkcoder.paddycure.data.model.local.UserModel
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.model.remote.PostOrderResponse
+import com.darkcoder.paddycure.data.model.remote.PostPesananResponse
 import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.network.ApiConfig
+import com.darkcoder.paddycure.utils.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,9 +29,13 @@ class ProductDetailsViewModel() : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+//    fun getUser(): LiveData<UserModel> {
+//        return userPreferences.getUser().asLiveData()
+//    }
+
 
     fun getProductercomendation() {
-        val client = ApiConfig.getServiceNews().getProduct()
+        val client = ApiConfig.getApiService().getProduct()
         client.enqueue(object : Callback<ProductResponse> {
             override fun onResponse(
                 call: Call<ProductResponse>,
@@ -110,6 +119,29 @@ class ProductDetailsViewModel() : ViewModel() {
             }
 
             override fun onFailure(call: Call<PostOrderResponse>, t: Throwable) {
+                _isLoading.value = false
+                Log.e("errorProduct", "onFailure: ${t.message}")
+            }
+        })
+    }
+
+    fun postPesanan(data: PostPesanan) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().postPesanan(data)
+        client.enqueue(object : Callback<PostPesananResponse> {
+            override fun onResponse(
+                call: Call<PostPesananResponse>,
+                response: Response<PostPesananResponse>
+            ) {
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    Log.e("success", "onViewCreated: ${response.body()?.keterangan}")
+                } else {
+                    Log.e("null", "onViewCreated: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<PostPesananResponse>, t: Throwable) {
                 _isLoading.value = false
                 Log.e("errorProduct", "onFailure: ${t.message}")
             }
