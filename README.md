@@ -1,4 +1,4 @@
-# PaddyCure
+# PaddyCure Documentation
 
 ![PaddyCure Logo](https://drive.google.com/uc?id=1JqG6Ox5Kw45GkjV9sZzg0VFcp_GYGbTo)
 
