@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.darkcoder.paddycure.data.network.ApiConfig
 import com.darkcoder.paddycure.data.viewmodel.HistoryViewModel
 import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.databinding.FragmentScanBinding
@@ -28,7 +29,7 @@ class HistoryFragment : Fragment() {
     private val binding get() = _binding
     private val historyViewModel: HistoryViewModel by viewModels()
     private val loginViewModel: LoginViewModel by viewModels {
-        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore))
+        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore), ApiConfig)
     }
 
     override fun onCreateView(
@@ -51,17 +52,17 @@ class HistoryFragment : Fragment() {
             }
         }
 
-        setupComposeList()
+
         loginViewModel.getUser().observe(viewLifecycleOwner) { user ->
             historyViewModel.getPaddy("${user.userId}")
 
         }
-
-
+        historyViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
         val historyAdapter = HistoryAdapter { paddy ->
             val intent = Intent(requireContext(), DetailHistoryActivity::class.java)
             intent.putExtra("penyakit", paddy)
-
             startActivity(intent)
         }
 
@@ -81,10 +82,8 @@ class HistoryFragment : Fragment() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun setupComposeList() {
-
-
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressBar?.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
 

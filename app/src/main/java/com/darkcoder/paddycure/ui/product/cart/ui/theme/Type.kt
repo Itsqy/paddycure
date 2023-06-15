@@ -10,13 +10,13 @@ import androidx.compose.ui.unit.sp
 import com.darkcoder.paddycure.R
 
 val fonts = FontFamily (
-        Font(R.font.poppins_bold, weight = FontWeight.Bold),
-        Font(R.font.poppins_bolditalic, weight = FontWeight.Bold, style = FontStyle.Italic),
-        Font(R.font.poppins_semibold, weight = FontWeight.SemiBold),
-        Font(R.font.poppins_medium, weight = FontWeight.Medium),
-        Font(R.font.poppins_reguler, weight = FontWeight.Normal),
-        Font(R.font.poppins_italic, weight = FontWeight.Normal, style = FontStyle.Italic),
-        )
+    Font(R.font.poppins_bold, weight = FontWeight.Bold),
+    Font(R.font.poppins_bolditalic, weight = FontWeight.Bold, style = FontStyle.Italic),
+    Font(R.font.poppins_semibold, weight = FontWeight.SemiBold),
+    Font(R.font.poppins_medium, weight = FontWeight.Medium),
+    Font(R.font.poppins_reguler, weight = FontWeight.Normal),
+    Font(R.font.poppins_italic, weight = FontWeight.Normal, style = FontStyle.Italic),
+)
 
 
 

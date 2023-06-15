@@ -11,12 +11,14 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.darkcoder.paddycure.data.network.ApiConfig
 import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.data.viewmodel.ProductDetailsViewModel
 import com.darkcoder.paddycure.data.viewmodel.ResultViewModel
 import com.darkcoder.paddycure.databinding.ActivityResultBinding
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.auth.dataStore
+import com.darkcoder.paddycure.ui.product.shop.ListProductAdapter
 import com.darkcoder.paddycure.ui.scan.result.listadapter.ProductsAdapter
 import com.darkcoder.paddycure.utils.UserPreferences
 import com.darkcoder.paddycure.utils.ViewModelFactory
@@ -30,7 +32,7 @@ class ResultActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityResultBinding
     private val loginViewModel: LoginViewModel by viewModels {
-        ViewModelFactory(UserPreferences.getInstance(this.dataStore))
+        ViewModelFactory(UserPreferences.getInstance(this.dataStore), ApiConfig)
     }
 
     private val resultViewModel: ResultViewModel by viewModels()
@@ -103,7 +105,6 @@ class ResultActivity : AppCompatActivity() {
         }
 
 
-
     }
 
     private fun alertDialogSetup() {
@@ -130,9 +131,9 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun productRecomendation() {
-        productDetailsViewModel.listProduct.observe(this@ResultActivity) {
-            val adapterProd = ProductsAdapter()
-            adapterProd.submitList(it)
+        productDetailsViewModel.listProduct.observe(this@ResultActivity) {listProduct->
+            val adapterProd = ListProductAdapter(listProduct)
+
             binding?.apply {
                 rvRecomendationProduct?.apply {
                     layoutManager =
