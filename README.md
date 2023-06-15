@@ -1,4 +1,4 @@
-# PaddyCure Documentation
+# PaddyCure App
 
 ![PaddyCure Logo](https://drive.google.com/uc?id=1JqG6Ox5Kw45GkjV9sZzg0VFcp_GYGbTo)
 
@@ -6,7 +6,7 @@
 
 PaddyCure is a mobile app designed to simplify the process of caring for paddy crops. It provides farmers with useful features and information to help them manage their paddy fields effectively.
 
-## Screenshots
+## Screens 
 
 | Home Screen | Result Screen | Shop Screen | Detail Screen | Chart Screen | History Screen |
 |---|---|---|---|---|---|
@@ -14,14 +14,44 @@ PaddyCure is a mobile app designed to simplify the process of caring for paddy c
 
 ## Features
 
-- Feature 1: Description of feature 1.
-- Feature 2: Description of feature 2.
-- Feature 3: Description of feature 3.
+- Scan Paddy Disease : Detect your paddy's disease with specific detection.
+- Fast Solving Product Recomendation :After Scanning the Disease, you can directly buy the product, fast scan, fast solve .
+- Recomendation Treatment : Give Some recomendation treatment after scan the disease 
+- Articles Paddy Treatment : news about tips and trick how to treatment your paddy properly .
+- Shop Pesticides : Buy the pesticides as much as you need.
 
 ## Installation
 
-1. Step 1: Provide instructions on how to install or download the app.
-2. Step 2: Any additional steps required for setup or configuration.
+To install the app, follow these steps:
+
+1. Download the APK file from [Google Drive](link-to-app-file).
+2. Transfer the APK file to your Android device.
+3. On your Android device, navigate to the location where you saved the APK file and tap on it.
+4. Follow the on-screen instructions to complete the installation process.
+
+## Requirements
+
+- Kotlin version: 1.5.21
+- Android Studio version: 4.2.1 or higher
+
+## Dependencies
+
+- Minimum API Level: Android 7.0 (Nougat) - API level 24
+- Target API Level: Android 12 (S) - API level 31
+
+
+## Clone and Usage
+
+To clone and use this project, follow these steps:
+
+1. Open a terminal or command prompt on your computer.
+
+2. Navigate to the directory where you want to clone the project.
+
+3. Run the following command to clone the project:
+
+  git clone https://github.com/Itsqy/paddycure
+
 
 ## Usage
 
@@ -33,6 +63,19 @@ PaddyCure is a mobile app designed to simplify the process of caring for paddy c
 
 We welcome contributions from the community. If you have suggestions, bug reports, or would like to contribute new features or improvements, please follow the guidelines in the [CONTRIBUTING.md](link-to-contributing.md) file.
 
-## License
+## Dependencies
 
-This project is licensed under the [MIT License](link-to-license.md).
+This project utilizes the following third-party libraries:
+
+- [Glide](https://github.com/bumptech/glide): A fast and efficient image loading library.
+- [Landscapist](https://github.com/skydoves/Landscapist): An image loading library for Jetpack Compose.
+- [Jetpack Pro](https://github.com/example/jetpack-pro): A library for advanced Jetpack features.
+- [CameraX](https://developer.android.com/training/camerax): Android Jetpack library for camera capabilities.
+- [Retrofit](https://square.github.io/retrofit/): A type-safe HTTP client for Android and Java.
+- [OkHttp AsyncHttp](https://square.github.io/okhttp/): An HTTP client for making asynchronous requests.
+- [Loopj](https://loopj.com/android-async-http/): A library for making asynchronous HTTP requests.
+- [Lottie](https://github.com/airbnb/lottie-android): A library for adding animations in JSON format.
+
+Please refer to the respective library documentation for usage instructions and license information.
+
+
