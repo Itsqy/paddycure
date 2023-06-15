@@ -1,31 +1,18 @@
 package com.darkcoder.paddycure.ui.product.productdetails
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-
-import androidx.activity.viewModels
-
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.compose.runtime.snapshots.Snapshot.Companion.observe
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.model.local.PostOrder
-import com.darkcoder.paddycure.data.model.local.UserModel
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.viewmodel.ProductDetailsViewModel
 import com.darkcoder.paddycure.databinding.ActivityProductDetailsBinding
 import com.darkcoder.paddycure.ui.product.cart.CartActivity
 import com.darkcoder.paddycure.ui.product.shop.ListProductAdapter
-import com.darkcoder.paddycure.utils.UserPreferences
-import com.darkcoder.paddycure.utils.ViewModelFactory
 
 class ProductDetailsActivity : AppCompatActivity() {
 
@@ -45,10 +32,11 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
-        productDetailsViewModel.getProductDetails()
+        productDetailsViewModel.getProductercomendation()
+        productDetailsViewModel.getProductDetails(id)
 
         productDetailsViewModel.getProduct()
+
 
 
         productDetailsViewModel.listProduct.observe(this) {
@@ -94,7 +82,15 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             btnAddToCart.setOnClickListener {
 
-                productDetailsViewModel.postOrder(PostOrder(jumlah_pesanan.toString(), total_harga.toString(), total_harga_pesanan.toString(), biaya_transaksi.toString(), data.id))
+                productDetailsViewModel.postOrder(
+                    PostOrder(
+                        jumlah_pesanan.toString(),
+                        total_harga.toString(),
+                        total_harga_pesanan.toString(),
+                        biaya_transaksi.toString(),
+                        data.id
+                    )
+                )
                 val intent = Intent(this@ProductDetailsActivity, CartActivity::class.java)
                 startActivity(intent)
             }

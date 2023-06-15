@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.databinding.ItemProductBinding
 import com.darkcoder.paddycure.ui.product.productdetails.ProductDetailsActivity
-import com.darkcoder.paddycure.ui.scan.history.detail.DetailHistoryActivity
 
 class ProductsAdapter : ListAdapter<DataItem, ProductsAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
@@ -29,9 +28,9 @@ class ProductsAdapter : ListAdapter<DataItem, ProductsAdapter.MyViewHolder>(DIFF
         }
 
         override fun onClick(v: View?) {
-            val item = binding.tvTitle
+            val item = itemView
             val intent = Intent(v?.context, ProductDetailsActivity::class.java)
-            intent.putExtra("itemId", item.id)
+            intent.putExtra("id", item.id)
             v?.context?.startActivity(intent)
         }
     }

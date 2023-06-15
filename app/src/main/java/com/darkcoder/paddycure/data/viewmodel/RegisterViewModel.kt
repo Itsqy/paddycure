@@ -28,8 +28,6 @@ class RegisterViewModel() : ViewModel() {
     fun register(name: String, username: String, passWord: String) {
 
         _isLoading.value = true
-
-
         val nameRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
         val usernameRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), username)
         val passWordRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), passWord)

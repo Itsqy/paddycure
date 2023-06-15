@@ -3,12 +3,11 @@ package com.darkcoder.paddycure.data.network
 
 import com.darkcoder.paddycure.data.model.local.PostOrder
 import com.darkcoder.paddycure.data.model.remote.BeritaResponse
-import com.darkcoder.paddycure.data.model.remote.DataItem
 import com.darkcoder.paddycure.data.model.remote.LoginResponse
 import com.darkcoder.paddycure.data.model.remote.OrderResponse
-import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.model.remote.PaddyResponse
 import com.darkcoder.paddycure.data.model.remote.PostOrderResponse
+import com.darkcoder.paddycure.data.model.remote.ProductResponse
 import com.darkcoder.paddycure.data.model.remote.RegisterResponse
 import com.darkcoder.paddycure.data.model.remote.SavedResultResponse
 import com.darkcoder.paddycure.data.model.remote.ScanResponse
@@ -21,6 +20,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -56,6 +56,15 @@ interface ApiService {
         @Body requestBody: RequestBody
     ): Call<LoginResponse>
 
+    @Multipart
+    @PUT("/users/ubah")
+    fun editUser(
+        @Part("id") id: RequestBody,
+        @Part("nama") nama: RequestBody,
+        @Part("nomor_hp") nomor_hp: RequestBody,
+        @Part("username") username: RequestBody,
+        @Part("password") password: RequestBody,
+    ): Call<RegisterResponse>
 
     @Multipart
     @POST("kamuKenapaSiniCerita")
@@ -79,20 +88,19 @@ interface ApiService {
     ): Call<SavedResultResponse>
 
 
-  
-   @GET("produk")
-    fun getProduct() : Call<ProductResponse>
+    @GET("produk")
+    fun getProduct(): Call<ProductResponse>
 
-   @GET("produk/search/id/{id}")
-   fun getProductDetails(@Path("id") id: String) : Call<ProductResponse>
+    @GET("produk/search/id/{id}")
+    fun getProductDetails(@Path("id") id: String): Call<ProductResponse>
 
-  
-   @GET("order/user/{user_id}")
-   fun getOrder(@Path("user_id") userId: String) : Call<OrderResponse>
 
-   @POST("order/input")
-   fun postOrder(
-       @Body requestBody: PostOrder
-   ) : Call<PostOrderResponse>
+    @GET("order/user/{user_id}")
+    fun getOrder(@Path("user_id") userId: String): Call<OrderResponse>
+
+    @POST("order/input")
+    fun postOrder(
+        @Body requestBody: PostOrder
+    ): Call<PostOrderResponse>
 
 }

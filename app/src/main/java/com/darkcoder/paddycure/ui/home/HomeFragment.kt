@@ -21,12 +21,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darkcoder.paddycure.R
 import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
+import com.darkcoder.paddycure.data.network.ApiConfig
 import com.darkcoder.paddycure.data.viewmodel.HomeViewModel
+import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
 import com.darkcoder.paddycure.ui.SecondActivity
+import com.darkcoder.paddycure.ui.auth.dataStore
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
 import com.darkcoder.paddycure.ui.scan.preview.PreviewActivity
+import com.darkcoder.paddycure.utils.UserPreferences
+import com.darkcoder.paddycure.utils.ViewModelFactory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.loopj.android.http.AsyncHttpClient
@@ -46,6 +51,10 @@ class HomeFragment : Fragment() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private val homeViewModel: HomeViewModel by viewModels()
+    private val loginViewModel: LoginViewModel by viewModels {
+        ViewModelFactory(UserPreferences.getInstance(requireContext().dataStore), ApiConfig)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -60,8 +69,6 @@ class HomeFragment : Fragment() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
         getMyLastLocation()
         setGoodMorning()
-
-
         homeViewModel.setNews()
         homeViewModel.setRecentNews()
         homeViewModel.getNews().observe(requireActivity()) { news ->
@@ -81,6 +88,10 @@ class HomeFragment : Fragment() {
         binding?.apply {
             bgScanFeature?.setOnClickListener {
                 startActivity(Intent(requireActivity(), PreviewActivity::class.java))
+            }
+
+            loginViewModel.getUser().observe(viewLifecycleOwner) {
+                tvUsername.text = it.userName
             }
 
         }
