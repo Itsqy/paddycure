@@ -76,7 +76,7 @@ class HistoryFragment : Fragment() {
                 }
 
             } else {
-                Toast.makeText(requireContext(), "data kosong", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Tidak ada History Saat Ini", Toast.LENGTH_LONG).show()
             }
         }
 

@@ -15,11 +15,11 @@ import com.darkcoder.paddycure.data.network.ApiConfig
 import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.data.viewmodel.ProductDetailsViewModel
 import com.darkcoder.paddycure.data.viewmodel.ResultViewModel
+import com.darkcoder.paddycure.data.viewmodel.ScanViewModel
 import com.darkcoder.paddycure.databinding.ActivityResultBinding
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.auth.dataStore
 import com.darkcoder.paddycure.ui.product.shop.ListProductAdapter
-import com.darkcoder.paddycure.ui.scan.result.listadapter.ProductsAdapter
 import com.darkcoder.paddycure.utils.UserPreferences
 import com.darkcoder.paddycure.utils.ViewModelFactory
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -37,6 +37,7 @@ class ResultActivity : AppCompatActivity() {
 
     private val resultViewModel: ResultViewModel by viewModels()
     private val productDetailsViewModel: ProductDetailsViewModel by viewModels()
+    private val scanViewModel: ScanViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityResultBinding.inflate(layoutInflater)
@@ -131,7 +132,7 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun productRecomendation() {
-        productDetailsViewModel.listProduct.observe(this@ResultActivity) {listProduct->
+        scanViewModel.productRecomendation.observe(this@ResultActivity) { listProduct ->
             val adapterProd = ListProductAdapter(listProduct)
 
             binding?.apply {

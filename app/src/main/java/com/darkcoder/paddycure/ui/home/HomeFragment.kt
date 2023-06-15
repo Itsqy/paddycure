@@ -252,7 +252,8 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "${location.longitude}", Toast.LENGTH_SHORT).show()
 
             } else {
-                Toast.makeText(requireContext(), "g ada ", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Lokasi belum didapatkan ", Toast.LENGTH_SHORT)
+                    .show()
                 showDialog()
 
 
