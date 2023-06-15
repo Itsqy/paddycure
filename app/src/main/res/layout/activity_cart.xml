@@ -111,7 +111,7 @@
                 android:layout_marginTop="23dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_reguler"
-                android:text="250.000"
+                android:text="0"
                 android:textColor="@color/grey400"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -184,7 +184,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="255.000"
+                android:text="0"
                 android:textColor="#5B6C6A"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="parent"
