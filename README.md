@@ -50,4 +50,4 @@ To clone and use this project, follow these steps:
 1. Open a terminal or command prompt on your computer.
 2. Navigate to the directory where you want to clone the project.
 3. Run the following command to clone the project:
-
+   git clone https://github.com/Itsqy/paddycure

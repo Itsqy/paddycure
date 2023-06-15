@@ -91,6 +91,9 @@ interface ApiService {
     @GET("produk")
     fun getProduct(): Call<ProductResponse>
 
+    @GET("produk/search/nama_produk/penyakit/{penyakit}")
+    fun getProductRecomendation(@Path("penyakit") nameDisease: String): Call<ProductResponse>
+
     @GET("produk/search/id/{id}")
     fun getProductDetails(@Path("id") id: String): Call<ProductResponse>
 

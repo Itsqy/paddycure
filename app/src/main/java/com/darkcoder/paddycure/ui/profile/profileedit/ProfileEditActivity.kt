@@ -44,6 +44,9 @@ class ProfileEditActivity : AppCompatActivity() {
 
         }
         binding?.apply {
+            loginViewModel.getUser().observe(this@ProfileEditActivity) {
+                binding.edEmail.hint = it.userName
+            }
             loginViewModel.isLoading.observe(this@ProfileEditActivity) { isLoading ->
                 if (isLoading) {
                     loadingLottie?.visibility = View.VISIBLE

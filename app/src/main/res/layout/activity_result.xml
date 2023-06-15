@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Sugestion for you"
+                android:text="Sugestion Treatment"
                 android:textColor="@color/primaryColor"
                 app:layout_constraintStart_toStartOf="@id/iv_disease_pict"
                 app:layout_constraintTop_toBottomOf="@id/iv_disease_pict" />
@@ -218,7 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="Product Recomendation"
+                android:text="Product to solve "
                 android:textColor="@color/primaryColor"
                 app:layout_constraintStart_toStartOf="@id/tv_sugestion"
                 app:layout_constraintTop_toBottomOf="@id/tv_sugestion" />
