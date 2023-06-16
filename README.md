@@ -65,4 +65,3 @@ This project utilizes the following third-party libraries:
 10. [AsyncHttpClient](https://github.com/AsyncHttpClient/async-http-client): A library for making asynchronous HTTP requests in Java and Android.
 11. Paging Compose: A Jetpack Compose library for handling pagination in lists and grids.
 
-Make sure to add the appropriate dependency declarations in your project's build.gradle or build.gradle.kts file for each library mentioned above.
