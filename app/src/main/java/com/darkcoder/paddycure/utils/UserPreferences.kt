@@ -15,7 +15,7 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
 
         return dataStore.data.map { user ->
             UserModel(
-                user[stringPreferencesKey("name")] ?: "",
+                user[stringPreferencesKey("name")] ?: "", user[stringPreferencesKey("email")] ?: "",
                 user[stringPreferencesKey("id")] ?: "",
                 user[stringPreferencesKey("token")] ?: "",
                 user[booleanPreferencesKey("login")] ?: false,
@@ -38,6 +38,7 @@ class UserPreferences(private val dataStore: DataStore<Preferences>) {
     suspend fun saveUser(data: UserModel) {
         dataStore.edit { user ->
             user[stringPreferencesKey("name")] = data.userName
+            user[stringPreferencesKey("email")] = data.userEmail
             user[stringPreferencesKey("id")] = data.userId
             user[stringPreferencesKey("token")] = data.userToken
             user[booleanPreferencesKey("login")] = data.isLogin

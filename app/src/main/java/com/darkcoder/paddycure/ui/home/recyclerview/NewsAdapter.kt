@@ -14,8 +14,8 @@ import com.darkcoder.paddycure.databinding.ItemNewsLayoutBinding
 import com.darkcoder.paddycure.ui.home.compose.RecentNewsItem
 import java.time.Instant
 
-class NewsAdapter : ListAdapter<BeritaResponseItem, NewsAdapter.MyViewHolder>(DIFF_CALLBACK) {
-    class MyViewHolder(private var binding: ItemNewsLayoutBinding) :
+class NewsAdapter(private val onItemClick: (BeritaResponseItem) -> Unit) : ListAdapter<BeritaResponseItem, NewsAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    class MyViewHolder(private var binding: ItemNewsLayoutBinding, val onItemClick: (BeritaResponseItem) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         @RequiresApi(Build.VERSION_CODES.O)
@@ -41,7 +41,8 @@ class NewsAdapter : ListAdapter<BeritaResponseItem, NewsAdapter.MyViewHolder>(DI
                     RecentNewsItem(
                         photo = news.imgBerita.toString(),
                         title = news.judulBerita.toString(),
-                        time = timeStr
+                        time = timeStr,
+                        onitemClick = onItemClick
                     )
                 }
             }
@@ -52,16 +53,13 @@ class NewsAdapter : ListAdapter<BeritaResponseItem, NewsAdapter.MyViewHolder>(DI
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding =
             ItemNewsLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MyViewHolder(binding)
+        return MyViewHolder(binding,onItemClick)
     }
 
-//    override fun getItemCount(): Int {
-//        TODO("Not yet implemented")
-//    }
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
         val data = getItem(position)
         if (data != null) {
             holder.bind(data)

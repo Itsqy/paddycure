@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -23,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.darkcoder.paddycure.R
+import com.darkcoder.paddycure.data.model.remote.BeritaResponseItem
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.fonts
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.greyColor
 import com.darkcoder.paddycure.ui.product.cart.ui.theme.primColor
@@ -32,14 +34,19 @@ import com.skydoves.landscapist.components.rememberImageComponent
 import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun RecentNewsItem(photo: String, title: String, time: String) {
+fun RecentNewsItem(
+    photo: String, title: String, time: String,
+    onitemClick: (BeritaResponseItem) -> Unit
+) {
     Card(
         shape = RoundedCornerShape(12.dp),
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp)
-            .padding(horizontal = 30.dp, vertical = 10.dp)
+            .padding(horizontal = 30.dp, vertical = 10.dp),
+
     ) {
         Row(Modifier.padding(start = 9.dp, top = 11.dp, bottom = 12.dp)) {
 
@@ -111,7 +118,7 @@ fun RecentNewsItem(photo: String, title: String, time: String) {
 
             Button(
 
-                onClick = { /*TODO*/ },
+                onClick = {onitemClick },
                 colors = ButtonDefaults.buttonColors(
                     primColor,
                 ),

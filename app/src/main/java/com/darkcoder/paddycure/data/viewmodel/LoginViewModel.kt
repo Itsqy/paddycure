@@ -57,6 +57,7 @@ class LoginViewModel(val sharedPref: UserPreferences, private val apiConfig: Api
                         apiConfig.setUserToken(response.body()?.token.toString())
                         val dataUser = body?.let {
                             UserModel(
+                                user?.nama.toString(),
                                 user?.username.toString(),
                                 user?.id.toString(),
                                 it.token,
