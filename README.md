@@ -23,6 +23,7 @@ PaddyCure is a mobile app designed to simplify the process of caring for paddy c
 - Recommendation Treatment: Give some recommendation treatment after scanning the disease.
 - Articles Paddy Treatment: News about tips and tricks on how to properly treat your paddy.
 - Shop Pesticides: Buy the pesticides as needed.
+- Home Screen: View essential information and navigate to different sections and show information about Forecasting.
 
 ## Installation
 
