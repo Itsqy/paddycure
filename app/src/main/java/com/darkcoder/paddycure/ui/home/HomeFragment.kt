@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.provider.Settings
@@ -27,6 +28,7 @@ import com.darkcoder.paddycure.data.viewmodel.LoginViewModel
 import com.darkcoder.paddycure.databinding.FragmentHomeBinding
 import com.darkcoder.paddycure.ui.SecondActivity
 import com.darkcoder.paddycure.ui.auth.dataStore
+import com.darkcoder.paddycure.ui.detailberita.DetailNewsActivity
 import com.darkcoder.paddycure.ui.home.compose.TopNewsList
 import com.darkcoder.paddycure.ui.home.recyclerview.NewsAdapter
 import com.darkcoder.paddycure.ui.scan.preview.PreviewActivity
@@ -74,13 +76,17 @@ class HomeFragment : Fragment() {
         homeViewModel.getNews().observe(requireActivity()) { news ->
             composeViewSetUp(news)
         }
+        val newsAdapter = NewsAdapter { news ->
+            val intent = Intent(requireActivity(), DetailNewsActivity::class.java)
+            intent.putExtra("news", news)
+            startActivity(intent)
+        }
         homeViewModel.getRecentNews().observe(requireActivity()) { recentNews ->
-            val newsAdapter = NewsAdapter()
+            newsAdapter.submitList(recentNews)
             binding?.rvRecentNews?.apply {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = newsAdapter
-                newsAdapter.submitList(recentNews)
             }
 
         }
@@ -166,6 +172,18 @@ class HomeFragment : Fragment() {
                     val url =
                         "http://api.weatherapi.com/v1/current.json?key=91b5be4a0d4d45e6bab231810232804&q=${location.latitude},${location.longitude}"
                     val client = AsyncHttpClient()
+                    val geoCoder = Geocoder(requireContext())
+                    val addresses =
+                        geoCoder.getFromLocation(location.latitude, location.longitude, 1)
+                    if (addresses!!.isNotEmpty()) {
+                        val placeName = addresses[0]
+                        val cityName = placeName.locality ?: ""
+                        val provinceName = placeName.adminArea ?: ""
+                        binding?.apply {
+                            tvPlace.text = "$cityName, $provinceName"
+                        }
+                        // Use the placeName as needed
+                    }
 
                     Toast.makeText(
                         requireContext(),
@@ -202,9 +220,6 @@ class HomeFragment : Fragment() {
                                     Glide.with(this@HomeFragment)
                                         .load("https:${condition.getString("icon")}")
                                         .into(ivSeason)
-
-                                    tvPlace.text =
-                                        "${location.getString("name")}, ${location.getString("region")}"
 
 
                                 }

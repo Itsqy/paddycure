@@ -122,6 +122,7 @@ class LoginFragment : Fragment() {
                     Toast.makeText(requireContext(), "$msg successfully login", Toast.LENGTH_SHORT)
                         .show()
                     startActivity(Intent(requireActivity(), SecondActivity::class.java))
+                    activity?.finish()
                 }
             } else {
                 loginViewModel.showMessage.observe(requireActivity()) { msg ->

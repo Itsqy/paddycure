@@ -40,7 +40,7 @@ import com.skydoves.landscapist.glide.GlideImage
 import com.skydoves.landscapist.placeholder.shimmer.ShimmerPlugin
 
 @Composable
-fun TopNewsList(newsData: ArrayList<BeritaResponseItem>) {
+fun TopNewsList(newsData: ArrayList<BeritaResponseItem>,) {
 
     Column() {
 

@@ -44,7 +44,7 @@ class CartActivity : AppCompatActivity() {
         cartViewModel.getUser().observe(this) {
             userId = it.userId
             cartViewModel.getPesanan(it.userId)
-            name = it.userName
+            name = it.userEmail
         }
 
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -115,12 +115,15 @@ class CartActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.setPackage("com.whatsapp")
 
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        } else {
-            // WhatsApp not installed on the device, handle it accordingly
-            Toast.makeText(this, "WhatsApp belum terinstall", Toast.LENGTH_SHORT)
-                .show();
-        }
+        startActivity(intent)
+
+//        if (intent.resolveActivity(packageManager) != null) {
+//            startActivity(intent)
+//        } else {
+//            // WhatsApp not installed on the device, handle it accordingly
+//            Toast.makeText(this, "WhatsApp belum terinstall", Toast.LENGTH_SHORT)
+//                .show();
+//            startActivity(intent)
+//        }
     }
 }

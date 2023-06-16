@@ -117,6 +117,7 @@ class ResultActivity : AppCompatActivity() {
                     modal.setMessage("your data $paddy has been added")
                     modal.setPositiveButton("Home") { dialog, which ->
                         startActivity(Intent(this@ResultActivity, SecondActivity::class.java))
+                        finish()
                     }
                     modal.show()
                 } else {
@@ -132,9 +133,9 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun productRecomendation() {
-        scanViewModel.productRecomendation.observe(this@ResultActivity) { listProduct ->
+//        scanViewModel.productRecomendation.observe(this@ResultActivity) { listProduct ->
+        productDetailsViewModel.listProduct.observe(this@ResultActivity) { listProduct ->
             val adapterProd = ListProductAdapter(listProduct)
-
             binding?.apply {
                 rvRecomendationProduct?.apply {
                     layoutManager =
