@@ -38,6 +38,7 @@
         android:layout_height="65dp"
         android:background="@color/white"
         android:elevation="3dp"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:itemIconTint="@color/buttom_nav_color"
         app:itemTextColor="@color/buttom_nav_color"
         app:layout_constraintBottom_toBottomOf="parent"

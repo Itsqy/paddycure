@@ -95,7 +95,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <com.darkcoder.paddycure.ui.customview.MyEditTextEmail
             android:id="@+id/edt_email_login"
             android:layout_width="259dp"
@@ -204,7 +203,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

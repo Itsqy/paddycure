@@ -18,7 +18,6 @@ class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
     val homeMenu: Fragment = HomeFragment()
-
     val fm: FragmentManager = supportFragmentManager
 
 
