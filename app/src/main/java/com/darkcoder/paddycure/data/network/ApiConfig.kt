@@ -20,6 +20,8 @@ object ApiConfig {
     }
 
 
+
+
     fun getServiceNews(): ApiService {
 
         val loggingInterceptor =

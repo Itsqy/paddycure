@@ -307,6 +307,7 @@ class HomeFragment : Fragment() {
         return locationMode != Settings.Secure.LOCATION_MODE_OFF
     }
 
+//    force to open location permission
     private fun requestLocationServices() {
         val locationSettingsIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
         startActivityForResult(locationSettingsIntent, REQUEST_LOCATION_SETTINGS)
